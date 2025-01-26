@@ -22,6 +22,7 @@ import Board from "./components/Board.tsx";
 import WinModal from "./components/WinModal.tsx";
 import DefeatModal from "./components/DefeatModal.tsx";
 import LevelMarker from "./components/LevelMarker.tsx";
+import BonusList from "./components/BonusList.tsx";
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -40,9 +41,7 @@ function App(): React.JSX.Element {
         <WinModal />
         <DefeatModal />
         <LevelMarker />
-        <Text>
-          IsDefeat: {gameStore.isDefeat}
-        </Text>
+        <BonusList />
       </View>
   );
 }

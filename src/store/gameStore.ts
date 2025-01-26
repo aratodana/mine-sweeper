@@ -28,6 +28,7 @@ class GameStore {
     restartGame = ()=> {
         this.currentLevel = 0;
         this.startGameByLevel();
+        this.bonuses = [];
     }
 
     @action
@@ -49,8 +50,21 @@ class GameStore {
         if (!bonus) {
             return;
         }
-        this.bonuses.push(bonus);
+        this.addBonus(bonus);
         boardStore.removeBonus(cx, cy);
+    }
+
+    @action
+    addBonus (bonus:Bonus) {
+        this.bonuses.push(bonus);
+    }
+
+    @action
+    removeFirstBonus (bonus:Bonus) {
+        const index = this.bonuses.findIndex(item => item === bonus);
+        if (index !== -1) {
+            this.bonuses.splice(index, 1);
+        }
     }
 }
 
