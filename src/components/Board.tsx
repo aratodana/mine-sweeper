@@ -14,6 +14,7 @@ import {
 import { observer } from "mobx-react-lite";
 
 import { boardStore } from "../store/boardStore.ts";
+import Field from "./Field.tsx";
 
 
 function EmptyBoard (): React.JSX.Element {
@@ -24,13 +25,11 @@ const styles = StyleSheet.create({
     board: {
         flexDirection: 'column',
         gap: 4,
+        backgroundColor: 'blue',
     },
     row: {
         flexDirection: 'row',
         gap: 4,
-    },
-    field: {
-        backgroundColor: 'blue',
     }
 });
 
@@ -45,9 +44,7 @@ const Board = observer(() => {
           { boardStore.board.map((row, keyX) => (
               <View key={`row_${keyX}`} style={styles.row}>
                   { row.map((field, keyY) => (
-                      <View key={`field_${keyX}-${keyY}`} style={styles.field}>
-                          <Text>{field}</Text>
-                      </View>
+                      <Field key={`field_${keyX}-${keyY}`} value={field} />
                   )) }
               </View>
           )) }

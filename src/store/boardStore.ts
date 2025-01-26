@@ -1,9 +1,9 @@
 import {makeAutoObservable} from "mobx";
-import {Field, getFieldByNumberOfMinesAround} from "../utils/types/Field.ts";
+import {FieldStatus, getFieldByNumberOfMinesAround} from "../utils/types/FieldStatus.ts";
 import randomInteger from "../utils/functions/randomInteger.ts";
 
 class BoardStore {
-    board: Array< Array<Field> > | null = null;
+    board: Array< Array<FieldStatus> > | null = null;
 
     constructor() {
         makeAutoObservable(this);
@@ -14,7 +14,7 @@ class BoardStore {
         for (let i = 0; i < size; i++) {
             const row = [];
             for (let j = 0; j < size; j++) {
-                row.push(Field.EMPTY);
+                row.push(FieldStatus.EMPTY);
             }
             localBoard.push(row);
         }
@@ -29,8 +29,7 @@ class BoardStore {
         for (let i = 0; i < numberOfMines; i++) {
             const x = randomInteger(0, this.board.length-1)
             const y = randomInteger(0, this.board.length-1)
-            console.log(this.board, x, y);
-            this.board[x][y] = Field.MINE;
+            this.board[x][y] = FieldStatus.MINE;
         }
         this.calculateNearFields();
     }
@@ -51,7 +50,7 @@ class BoardStore {
             const intervalYMax = cy === this.board.length - 1 ? this.board.length - 1 : cy + 1;
             for (let i = intervalXMin; i <= intervalXMax; i++) {
                 for (let j = intervalYMin; j <= intervalYMax; j++) {
-                    if (this.board[i][j] === Field.MINE) {
+                    if (this.board[i][j] === FieldStatus.MINE) {
                         counter++;
                     }
                 }
@@ -60,7 +59,7 @@ class BoardStore {
         }
         for (let i = 0; i < this.board.length; i++) {
             for (let j = 0; j < this.board.length; j++) {
-                if (this.board[i][j] == Field.MINE) {
+                if (this.board[i][j] == FieldStatus.MINE) {
                     continue;
                 }
                 const numberOfMinesAround = calcMinesAround(i, j);
