@@ -8,7 +8,8 @@ enum Bonus {
 }
 
 function getRandomBonus (): Bonus {
-    const enumValues = Object.values(Bonus);
+
+    const enumValues = [Bonus.REVEAL_RANDOM_FIELD, Bonus.FLAG_RANDOM_MINE, Bonus.NEW_BONUS];
     const index = Math.floor(Math.random() * enumValues.length);
     return enumValues[index];
 }
