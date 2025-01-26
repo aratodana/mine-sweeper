@@ -8,9 +8,10 @@
 import React, {useEffect} from 'react';
 import type {PropsWithChildren} from 'react';
 import {
-  Text,
-  useColorScheme,
-  View,
+    SafeAreaView,
+    Text,
+    useColorScheme,
+    View,
 } from 'react-native';
 
 import {
@@ -35,15 +36,15 @@ function App(): React.JSX.Element {
     gameStore.startGameByLevel();
   });
 
-  return (
-      <View>
-        <Board />
-        <WinModal />
-        <DefeatModal />
-        <LevelMarker />
-        <BonusList />
-      </View>
-  );
+    return (
+        <SafeAreaView>
+            <WinModal />
+            <DefeatModal />
+            <LevelMarker />
+            <Board />
+            <BonusList />
+        </SafeAreaView>
+    );
 }
 
 export default App;

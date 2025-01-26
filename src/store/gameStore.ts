@@ -24,6 +24,11 @@ class GameStore {
         return boardStore.boardStatus.includes(GameStatus.DEFEATED);
     }
 
+    @computed
+    get getBonuses () {
+        return this.bonuses.slice();
+    }
+
     @action
     restartGame = ()=> {
         this.currentLevel = 0;

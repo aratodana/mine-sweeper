@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
     board: {
         flexDirection: 'column',
         gap: 4,
-        backgroundColor: 'blue',
+        backgroundColor: '#a7a7a7',
+        padding: 4,
     },
     row: {
         flexDirection: 'row',
