@@ -85,11 +85,27 @@ class BoardStore {
         return this.revealedFields[keyX][keyY];
     }
 
-    reveal (keyX: number, keyY: number) {
-        if (!this.revealedFields) {
+    reveal (cx: number, cy: number) {
+        if (!this.revealedFields || !this.board) {
             return;
         }
-        this.revealedFields[keyX][keyY] = true;
+        if (this.revealedFields[cx][cy]) {
+            return;
+        }
+        this.revealedFields[cx][cy] = true;
+
+        if (this.board[cx][cy] === FieldStatus.EMPTY) {
+            const intervalXMin = cx === 0 ? 0 : cx -1;
+            const intervalYMin = cy === 0 ? 0 : cy -1;
+            const intervalXMax = cx === this.board.length - 1 ? this.board.length - 1 : cx + 1;
+            const intervalYMax = cy === this.board.length - 1 ? this.board.length - 1 : cy + 1;
+
+            for(let i = intervalXMin; i <= intervalXMax; i++) {
+                for (let j = intervalYMin; j <= intervalYMax; j++) {
+                    this.reveal(i, j)
+                }
+            }
+        }
     }
 }
 
