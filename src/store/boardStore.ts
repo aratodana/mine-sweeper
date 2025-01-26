@@ -1,18 +1,25 @@
-import {makeAutoObservable} from "mobx";
+import {action, computed, makeAutoObservable, observable} from "mobx";
 import {FieldStatus, getFieldByNumberOfMinesAround} from "../utils/types/FieldStatus.ts";
 import randomInteger from "../utils/functions/randomInteger.ts";
 import {GameStatus} from "../utils/types/GameStatus.ts";
 
 class BoardStore {
+    @observable
     board: Array< Array<FieldStatus> > | null = null;
+
+    @observable
     revealedFields:  Array< Array<boolean> > | null = null;
+
+    @observable
     flaggedFields:  Array< Array< boolean>> | null = null;
 
     constructor() {
         makeAutoObservable(this);
     }
 
-    initEmptyBoard (size: number) {
+
+    @action
+    initEmptyBoard = (size: number) => {
         const localBoard = [];
         const emptyBooleanBoard = [];
         for (let i = 0; i < size; i++) {
@@ -30,7 +37,8 @@ class BoardStore {
         this.flaggedFields = emptyBooleanBoard;
     }
 
-    addRandomMines (numberOfMines: number) {
+    @action
+    addRandomMines = (numberOfMines: number) => {
         if (!this.board) {
             console.warn('Call addRandomMines without board');
             return;
@@ -42,7 +50,8 @@ class BoardStore {
         }
         this.calculateNearFields();
     }
-    calculateNearFields () {
+    @action
+    calculateNearFields = () => {
         if (!this.board) {
             console.warn('Call calculateNearFields without board');
             return;
@@ -77,25 +86,29 @@ class BoardStore {
         }
     }
 
+    @computed
     get getBoard () {
         return this.board;
     }
 
-    isRevealed(keyX: number, keyY: number): boolean {
+    @action
+    isRevealed = (keyX: number, keyY: number): boolean => {
         if (!this.revealedFields) {
             return false;
         }
         return this.revealedFields[keyX][keyY];
     }
 
-    isFlagged(keyX: number, keyY: number): boolean {
+    @computed
+    isFlagged = (keyX: number, keyY: number): boolean => {
         if (!this.flaggedFields) {
             return false;
         }
         return this.flaggedFields[keyX][keyY];
     }
 
-    reveal (cx: number, cy: number) {
+    @action
+    reveal = (cx: number, cy: number) => {
         if (!this.revealedFields || !this.board || !this.flaggedFields) {
             return;
         }
@@ -121,7 +134,8 @@ class BoardStore {
         }
     }
 
-    setFlag (cx: number, cy: number) {
+    @action
+    setFlag =(cx: number, cy: number) => {
         if (!this.revealedFields || !this.board || !this.flaggedFields) {
             return;
         }
@@ -131,31 +145,39 @@ class BoardStore {
         this.flaggedFields[cx][cy] = !this.flaggedFields[cx][cy];
     }
 
-    get boardStatus (): GameStatus {
+    @computed
+    get boardStatus (): Array<GameStatus> {
+        const problems: Array<GameStatus> = [];
+        const addProblemToList = (currentStatus: GameStatus) => {
+            if (problems.includes(currentStatus)) {
+                return;
+            }
+            problems.push(currentStatus);
+        }
         if (!this.revealedFields || !this.board || !this.flaggedFields) {
-            return GameStatus.NOT_STARTED;
+            return [GameStatus.NOT_STARTED];
         }
         for (let i = 0; i < this.board.length; i++) {
             for (let j = 0; j < this.board.length; j++) {
                 if (this.board[i][j] == FieldStatus.MINE) {
                     if (this.isRevealed(i, j)) {
-                        return GameStatus.DEFEATED;
+                        addProblemToList(GameStatus.DEFEATED)
                     }
                     if (!this.isFlagged(i, j)) {
-                        return GameStatus.NOT_ALL_MINES_FLAGGED;
+                        addProblemToList(GameStatus.NOT_ALL_MINES_FLAGGED);
                     }
                 }
                 else {
                     if (!this.isRevealed(i, j)) {
-                        return GameStatus.NOT_ALL_EMPTY_REVEALED
+                        addProblemToList(GameStatus.NOT_ALL_EMPTY_REVEALED);
                     }
                     if (this.isFlagged(i, j)) {
-                        return GameStatus.EMPTY_FIELD_FLAGGED
+                        addProblemToList(GameStatus.EMPTY_FIELD_FLAGGED)
                     }
                 }
             }
         }
-        return GameStatus.FINISHED
+        return problems;
     }
 }
 
