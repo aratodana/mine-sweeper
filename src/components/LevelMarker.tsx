@@ -18,12 +18,21 @@ import {FieldStatus} from "../utils/types/FieldStatus.ts";
 import {gameStore} from "../store/gameStore.ts";
 
 const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#a7a7a7',
+        borderRadius: 4,
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 4,
+        marginRight: 4
+    }
 });
 
 
 const Field = observer(() => {
   return (
-      <View>
+      <View style={styles.container}>
           <Text>
               Level: { gameStore.currentLevel }
           </Text>

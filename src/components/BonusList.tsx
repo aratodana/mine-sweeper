@@ -13,12 +13,15 @@ import {gameStore} from "../store/gameStore.ts";
 import BonusCard from "./BonusCard.tsx";
 
 const styles = StyleSheet.create({
+    container: {
+        paddingLeft: 4,
+        paddingRight: 4,
+    }
 });
 
 const BonusList = observer(() => {
     return (
-      <View>
-          <Text>BonusList</Text>
+      <View style={styles.container}>
           <FlatList
               data={gameStore.getBonuses}
               renderItem={({ item }) => <BonusCard bonus={item} />}

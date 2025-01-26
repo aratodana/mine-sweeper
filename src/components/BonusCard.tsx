@@ -14,15 +14,22 @@ const styles = StyleSheet.create({
     card: {
         width: 150,
         aspectRatio: 0.75,
-        padding: 4,
         borderRadius: 4,
         backgroundColor: '#a7a7a7',
+        justifyContent: 'space-between',
+        overflow: 'hidden',
     },
-    bonusComponent: {
-
+    bonusTitle: {
+        fontSize: 18,
+        padding: 4,
+    },
+    bonusDescription: {
+        bottom: 0,
+        backgroundColor: '#d5d5d5',
+        padding: 4,
     }
 });
-const BonusCard = ({ bonus }: { bonus: Bonus }) => {
+const BonusCard = ({ bonus }: { bonus: Bonus }): JSX.Element => {
 
     const bonusConfig = [
         {
@@ -47,14 +54,14 @@ const BonusCard = ({ bonus }: { bonus: Bonus }) => {
 
     const current = bonusConfig.find(config => config.bonus === bonus);
     if (!current) {
-        return;
+        return <View></View>;
     }
 
     return  <TouchableOpacity style={styles.card} onPress={current.callback}>
-                <Text>
+                <Text style={styles.bonusTitle}>
                     { current.title }
                 </Text>
-                <Text>
+                <Text style={styles.bonusDescription}>
                     { current.description }
                 </Text>
             </TouchableOpacity>

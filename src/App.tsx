@@ -8,7 +8,7 @@
 import React, {useEffect} from 'react';
 import type {PropsWithChildren} from 'react';
 import {
-    SafeAreaView,
+    SafeAreaView, StyleSheet,
     Text,
     useColorScheme,
     View,
@@ -25,24 +25,42 @@ import DefeatModal from "./components/DefeatModal.tsx";
 import LevelMarker from "./components/LevelMarker.tsx";
 import BonusList from "./components/BonusList.tsx";
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+const styles = StyleSheet.create({
+    appContainer: {
+        justifyContent: 'space-between',
+        gap: 8
+    },
+    header: {
+        flexBasis: 50,
+    },
+    board: {
+        flexBasis: 'auto'
+    },
+    bonusList: {
+        flexBasis: 200,
+    }
+});
+
+function App(): React.JSX.Element {
 
   useEffect(() => {
     gameStore.startGameByLevel();
   });
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.appContainer}>
             <WinModal />
             <DefeatModal />
-            <LevelMarker />
-            <Board />
-            <BonusList />
+            <View style={styles.header}>
+                <LevelMarker />
+            </View>
+            <View style={styles.board}>
+                <Board  />
+            </View>
+            <View style={styles.bonusList}>
+                <BonusList />
+            </View>
         </SafeAreaView>
     );
 }
