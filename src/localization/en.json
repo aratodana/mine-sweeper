@@ -1,0 +1,15 @@
+{
+  "header": {
+    "level": "Level"
+  },
+  "modal": {
+    "win": {
+      "title": "You won!",
+      "level": "Prepare to the next level"
+    },
+    "defeat": {
+      "title": "You defeated",
+      "level": "You reached the level of"
+    }
+  }
+}

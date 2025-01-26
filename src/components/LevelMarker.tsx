@@ -16,6 +16,8 @@ import { observer } from "mobx-react-lite";
 import { boardStore } from "../store/boardStore.ts";
 import {FieldStatus} from "../utils/types/FieldStatus.ts";
 import {gameStore} from "../store/gameStore.ts";
+import {useTranslation} from "react-i18next";
+import '../i18n.ts'
 
 const styles = StyleSheet.create({
     container: {
@@ -31,10 +33,12 @@ const styles = StyleSheet.create({
 
 
 const Field = observer(() => {
+    const { t } = useTranslation();
+
   return (
       <View style={styles.container}>
           <Text>
-              Level: { gameStore.currentLevel + 1 }
+              {t("header.level")}: { gameStore.currentLevel + 1 }
           </Text>
       </View>
   );

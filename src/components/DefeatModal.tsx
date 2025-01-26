@@ -15,6 +15,7 @@ import {
 import { observer } from "mobx-react-lite";
 
 import { gameStore } from "../store/gameStore.ts";
+import {useTranslation} from "react-i18next";
 
 const styles = StyleSheet.create({
     fullAreaView: {
@@ -35,6 +36,7 @@ const styles = StyleSheet.create({
 });
 
 const DefeatModal = observer(() => {
+    const { t } = useTranslation();
 
   return (
       <Modal visible={gameStore.isDefeat} transparent={true} animationType="slide">
@@ -42,10 +44,10 @@ const DefeatModal = observer(() => {
               <View style={styles.fullAreaView}>
                   <SafeAreaView style={styles.content}>
                       <Text style={styles.mainTitle}>
-                          YOU DEFEATED
+                          { t("modal.defeat.title") }
                       </Text>
                       <Text>
-                          Next level {gameStore.currentLevel}
+                          { t("modal.defeat.level")}  {gameStore.currentLevel}
                       </Text>
                   </SafeAreaView>
               </View>

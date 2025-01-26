@@ -16,6 +16,7 @@ import {
 import { observer } from "mobx-react-lite";
 
 import { gameStore } from "../store/gameStore.ts";
+import {useTranslation} from "react-i18next";
 
 const styles = StyleSheet.create({
     fullAreaView: {
@@ -36,6 +37,7 @@ const styles = StyleSheet.create({
 });
 
 const WinModal = observer(() => {
+    const { t } = useTranslation();
 
   return (
       <Modal visible={gameStore.isWin} transparent={true} animationType="slide">
@@ -43,10 +45,10 @@ const WinModal = observer(() => {
               <View style={styles.fullAreaView}>
                   <SafeAreaView style={styles.content}>
                       <Text style={styles.mainTitle}>
-                          YOU WON
+                          { t("modal.win.title") }
                       </Text>
                       <Text>
-                          Next level {gameStore.currentLevel + 2}
+                          { t("modal.win.level") } {gameStore.currentLevel + 2}
                       </Text>
                   </SafeAreaView>
               </View>

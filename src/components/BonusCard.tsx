@@ -9,6 +9,7 @@ import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import {Bonus} from "../utils/types/Bonus.ts";
 import {bonusStore} from "../store/bonusStore.ts";
+import {useTranslation} from "react-i18next";
 
 const styles = StyleSheet.create({
     card: {
@@ -31,6 +32,7 @@ const styles = StyleSheet.create({
     }
 });
 const BonusCard = ({ bonus }: { bonus: Bonus }): JSX.Element => {
+    const { t } = useTranslation();
 
     const bonusConfig = [
         {

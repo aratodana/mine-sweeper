@@ -14,17 +14,12 @@ import {
     View,
 } from 'react-native';
 
-import {
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
-import { boardStore } from "./store/boardStore.ts";
 import {gameStore} from "./store/gameStore.ts";
 import Board from "./components/Board.tsx";
 import WinModal from "./components/WinModal.tsx";
 import DefeatModal from "./components/DefeatModal.tsx";
 import LevelMarker from "./components/LevelMarker.tsx";
 import BonusList from "./components/BonusList.tsx";
-
 
 const styles = StyleSheet.create({
     appContainer: {
@@ -44,9 +39,9 @@ const styles = StyleSheet.create({
 
 function App(): React.JSX.Element {
 
-  useEffect(() => {
-    gameStore.startGameByLevel();
-  });
+   useEffect(() => {
+      gameStore.startGameByLevel();
+   });
 
     return (
         <SafeAreaView style={styles.appContainer}>
