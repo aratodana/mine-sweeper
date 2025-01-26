@@ -29,16 +29,21 @@ const styles = StyleSheet.create({
     },
     unRevealed: {
         backgroundColor: 'red'
+    },
+    flagged: {
+        backgroundColor: 'green'
     }
 });
 
 interface FieldProps {
     value: FieldStatus;
     isRevealed: boolean;
+    isFlagged: boolean;
     onReveal: () => void;
+    onFlag: () => void;
 }
 
-const Field = function({value, isRevealed, onReveal}: FieldProps) {
+const Field = function({value, isRevealed, isFlagged, onReveal, onFlag}: FieldProps) {
   if (isRevealed) {
       return (
           <View style={[styles.field, styles.revealed]}>
@@ -47,8 +52,16 @@ const Field = function({value, isRevealed, onReveal}: FieldProps) {
       )
   }
 
+  if (isFlagged) {
+      return (
+          <TouchableOpacity style={[styles.field, styles.flagged]} onLongPress={onFlag}>
+            <Text>F</Text>
+          </TouchableOpacity>
+      )
+  }
+
   return (
-      <TouchableOpacity style={[styles.field, styles.unRevealed]} onPress={onReveal}>
+      <TouchableOpacity style={[styles.field, styles.unRevealed]} onPress={onReveal} onLongPress={onFlag}>
           <Text>U</Text>
       </TouchableOpacity>
   );

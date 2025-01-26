@@ -5,6 +5,7 @@ import randomInteger from "../utils/functions/randomInteger.ts";
 class BoardStore {
     board: Array< Array<FieldStatus> > | null = null;
     revealedFields:  Array< Array<boolean> > | null = null;
+    flaggedFields:  Array< Array< boolean>> | null = null;
 
     constructor() {
         makeAutoObservable(this);
@@ -12,7 +13,7 @@ class BoardStore {
 
     initEmptyBoard (size: number) {
         const localBoard = [];
-        const revealedBoard = [];
+        const emptyBooleanBoard = [];
         for (let i = 0; i < size; i++) {
             const row = [];
             const revealedRow = [];
@@ -21,10 +22,11 @@ class BoardStore {
                 revealedRow.push(false);
             }
             localBoard.push(row);
-            revealedBoard.push(revealedRow);
+            emptyBooleanBoard.push(revealedRow);
         }
         this.board = localBoard;
-        this.revealedFields = revealedBoard;
+        this.revealedFields = emptyBooleanBoard;
+        this.flaggedFields = emptyBooleanBoard;
     }
 
     addRandomMines (numberOfMines: number) {
@@ -85,11 +87,21 @@ class BoardStore {
         return this.revealedFields[keyX][keyY];
     }
 
+    isFlagged(keyX: number, keyY: number): boolean {
+        if (!this.flaggedFields) {
+            return false;
+        }
+        return this.flaggedFields[keyX][keyY];
+    }
+
     reveal (cx: number, cy: number) {
-        if (!this.revealedFields || !this.board) {
+        if (!this.revealedFields || !this.board || !this.flaggedFields) {
             return;
         }
         if (this.revealedFields[cx][cy]) {
+            return;
+        }
+        if (this.flaggedFields[cx][cy]) {
             return;
         }
         this.revealedFields[cx][cy] = true;
@@ -106,6 +118,16 @@ class BoardStore {
                 }
             }
         }
+    }
+
+    setFlag (cx: number, cy: number) {
+        if (!this.revealedFields || !this.board || !this.flaggedFields) {
+            return;
+        }
+        if(this.revealedFields[cx][cy]) {
+            return;
+        }
+        this.flaggedFields[cx][cy] = !this.flaggedFields[cx][cy];
     }
 }
 

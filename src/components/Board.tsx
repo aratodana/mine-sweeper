@@ -44,7 +44,7 @@ const Board = observer(() => {
           { boardStore.board.map((row, keyX) => (
               <View key={`row_${keyX}`} style={styles.row}>
                   { row.map((field, keyY) => (
-                      <Field key={`field_${keyX}-${keyY}`} value={field} isRevealed={boardStore.isRevealed(keyX, keyY)} onReveal={() => boardStore.reveal(keyX, keyY)} />
+                      <Field key={`field_${keyX}-${keyY}`} value={field} isRevealed={boardStore.isRevealed(keyX, keyY)} isFlagged={boardStore.isFlagged(keyX, keyY)} onReveal={() => boardStore.reveal(keyX, keyY)}  onFlag={() => boardStore.setFlag(keyX, keyY)} />
                   )) }
               </View>
           )) }
