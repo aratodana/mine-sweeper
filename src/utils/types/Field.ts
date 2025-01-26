@@ -11,4 +11,9 @@ enum Field {
     MINE = 'x'
 }
 
-export default Field;
+const getFieldByNumberOfMinesAround = (numberOfMinesAround: number):Field => {
+    const key = Object.keys(Field).find(key => Field[key as keyof typeof Field] === numberOfMinesAround);
+    return Field[key as keyof typeof Field];
+}
+
+export {Field, getFieldByNumberOfMinesAround};
