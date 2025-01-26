@@ -2,6 +2,7 @@ import {action, computed, makeAutoObservable, observable} from "mobx";
 import {boardStore} from "./boardStore.ts";
 import {GameStatus} from "../utils/types/GameStatus.ts";
 import {Bonus} from "../utils/types/Bonus.ts";
+import levels from "../config/levels.json"
 
 class GameStore {
     @observable
@@ -38,10 +39,11 @@ class GameStore {
 
     @action
     startGameByLevel= () => {
-        boardStore.initEmptyBoard(6);
-        boardStore.addRandomMines(1);
+        const currentLevel = levels[this.currentLevel];
+        boardStore.initEmptyBoard(currentLevel.size);
+        boardStore.addRandomMines(currentLevel.mine);
         boardStore.calculateNearFields();
-        boardStore.addRandomBonuses(3)
+        boardStore.addRandomBonuses(currentLevel.bonus)
     }
 
     @action
