@@ -34,7 +34,7 @@ const Field = observer(() => {
   return (
       <View style={styles.container}>
           <Text>
-              Level: { gameStore.currentLevel }
+              Level: { gameStore.currentLevel + 1 }
           </Text>
       </View>
   );
