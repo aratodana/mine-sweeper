@@ -46,7 +46,7 @@ const WinModal = observer(() => {
                           YOU WON
                       </Text>
                       <Text>
-                          Next level {gameStore.currentLevel}
+                          Next level {gameStore.currentLevel + 2}
                       </Text>
                   </SafeAreaView>
               </View>

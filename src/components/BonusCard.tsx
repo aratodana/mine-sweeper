@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         backgroundColor: '#d5d5d5',
         padding: 4,
+        flexBasis: "30%"
     }
 });
 const BonusCard = ({ bonus }: { bonus: Bonus }): JSX.Element => {
