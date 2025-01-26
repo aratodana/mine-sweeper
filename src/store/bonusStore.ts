@@ -11,42 +11,50 @@ class BonusStore {
     }
 
     @action
-    flagRandomMine (source:BonusCardData) {
+    flagRandomMine (source:BonusCardData, numberOfFields:number = 1) {
         if (!boardStore.board) {
             console.warn('No board while calling flagRandomMine');
             return;
         }
-        const fields = boardStore.board.flatMap(value => value);
-        const mines = fields.filter(field => field.value === FieldStatus.MINE &&  !field.isRevealed && !field.isFlagged);
-        const randomIndex = Math.floor(Math.random() * mines.length);
-        const randomElement = mines[randomIndex];
-        if (!randomElement) {
-            return;
+        for(let i = 0; i < numberOfFields; i++) {
+            const fields = boardStore.board.flatMap(value => value);
+            const mines = fields.filter(field => field.value === FieldStatus.MINE &&  !field.isRevealed && !field.isFlagged);
+            const randomIndex = Math.floor(Math.random() * mines.length);
+            const randomElement = mines[randomIndex];
+            if (!randomElement) {
+                gameStore.removeFirstBonus(source);
+                return;
+            }
+            boardStore.setFlag(randomElement.cx, randomElement.cy);
         }
-        boardStore.setFlag(randomElement.cx, randomElement.cy);
         gameStore.removeFirstBonus(source);
     }
 
     @action
-    revealRandomField (source:BonusCardData) {
+    revealRandomField (source:BonusCardData, numberOfFields:number = 1) {
         if (!boardStore.board) {
             console.warn('No board while calling flagRandomMine');
             return;
         }
-        const fields = boardStore.board.flatMap(value => value);
-        const notMineFields = fields.filter(field => field.value !== FieldStatus.MINE &&  !field.isRevealed && !field.isFlagged);
-        const randomIndex = Math.floor(Math.random() * notMineFields.length);
-        const randomElement = notMineFields[randomIndex];
-        if (!randomElement) {
-            return;
+        for (let i = 0; i < numberOfFields; i++) {
+            const fields = boardStore.board.flatMap(value => value);
+            const notMineFields = fields.filter(field => field.value !== FieldStatus.MINE &&  !field.isRevealed && !field.isFlagged);
+            const randomIndex = Math.floor(Math.random() * notMineFields.length);
+            const randomElement = notMineFields[randomIndex];
+            if (!randomElement) {
+                gameStore.removeFirstBonus(source);
+                return;
+            }
+            boardStore.reveal(randomElement.cx, randomElement.cy);
         }
-        boardStore.reveal(randomElement.cx, randomElement.cy);
         gameStore.removeFirstBonus(source);
     }
 
     @action
-    newBonus (source:BonusCardData) {
-        gameStore.addBonus(getRandomBonus());
+    newBonus (source:BonusCardData, numberOfFields:number = 1) {
+        for (let i = 0; i < numberOfFields; i++) {
+            gameStore.addBonus(getRandomBonus());
+        }
         gameStore.removeFirstBonus(source);
     }
 }

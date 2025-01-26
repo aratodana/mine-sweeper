@@ -23,8 +23,8 @@
         "description": "Add a new random bonus card"
       },
       "type_3": {
-        "title": "New bonus 3",
-        "description": "Add a new random bonus card"
+        "title": "New two bonus 3",
+        "description": "Add two new random bonus card"
       }
     },
     "flag_random_mine": {
@@ -37,8 +37,8 @@
         "description": "Flags a random mine"
       },
       "type_3": {
-        "title": "Flags a random mine 3",
-        "description": "Flags a random mine"
+        "title": "Flags two random mine 3",
+        "description": "Flags two random mine"
       }
     },
     "reveal_random_field": {
@@ -51,8 +51,8 @@
         "description": "Reveal a random field"
       },
       "type_3": {
-        "title": "Reveal a random field 3",
-        "description": "Reveal a random field"
+        "title": "Reveal two random field 3",
+        "description": "Reveal two random field"
       }
     }
   }

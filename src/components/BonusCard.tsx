@@ -49,7 +49,7 @@ const BonusCard = ({ bonus }: { bonus: BonusCardData }): JSX.Element => {
         },
         {
             bonus: new BonusCardData(Bonus.NEW_BONUS, 3),
-            callback: bonusStore.newBonus,
+            callback: (source:BonusCardData) => bonusStore.newBonus(source, 2),
             title: t("bonus.new_bonus.type_3.title"),
             description: t("bonus.new_bonus.type_3.description")
         },
@@ -67,7 +67,7 @@ const BonusCard = ({ bonus }: { bonus: BonusCardData }): JSX.Element => {
         },
         {
             bonus: new BonusCardData(Bonus.FLAG_RANDOM_MINE, 3),
-            callback: bonusStore.flagRandomMine,
+            callback: (source:BonusCardData) => bonusStore.flagRandomMine(source, 2),
             title: t("bonus.flag_random_mine.type_3.title"),
             description: t("bonus.flag_random_mine.type_3.description")
         },
@@ -85,7 +85,7 @@ const BonusCard = ({ bonus }: { bonus: BonusCardData }): JSX.Element => {
         },
         {
             bonus: new BonusCardData(Bonus.REVEAL_RANDOM_FIELD, 3),
-            callback: bonusStore.revealRandomField,
+            callback: (source:BonusCardData) => bonusStore.revealRandomField(source, 2),
             title: t("bonus.reveal_random_field.type_3.title"),
             description: t("bonus.reveal_random_field.type_3.description")
         }
