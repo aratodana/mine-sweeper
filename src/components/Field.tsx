@@ -15,6 +15,7 @@ import { observer } from "mobx-react-lite";
 
 import { boardStore } from "../store/boardStore.ts";
 import {FieldStatus} from "../utils/types/FieldStatus.ts";
+import {FieldData} from "../utils/types/FieldData.ts";
 
 const styles = StyleSheet.create({
     field: {
@@ -36,36 +37,34 @@ const styles = StyleSheet.create({
 });
 
 interface FieldProps {
-    value: FieldStatus;
-    isRevealed: boolean;
-    isFlagged: boolean;
+    fieldData: FieldData;
     onReveal: () => void;
     onFlag: () => void;
 }
 
-const Field = function({value, isRevealed, isFlagged, onReveal, onFlag}: FieldProps) {
-  if (isRevealed) {
-      return (
-          <View style={[styles.field, styles.revealed]}>
-            <Text>{value}</Text>
-          </View>
-      )
-  }
+const Field = observer(({fieldData, onReveal, onFlag}: FieldProps) => {
+    if (fieldData.isRevealed) {
+        return (
+            <View style={[styles.field, styles.revealed]}>
+                <Text>{fieldData.value}</Text>
+            </View>
+        )
+    }
 
-  if (isFlagged) {
-      return (
-          <TouchableOpacity style={[styles.field, styles.flagged]} onLongPress={onFlag}>
-            <Text>F</Text>
-          </TouchableOpacity>
-      )
-  }
+    if (fieldData.isFlagged) {
+        return (
+            <TouchableOpacity style={[styles.field, styles.flagged]} onLongPress={onFlag}>
+                <Text>F</Text>
+            </TouchableOpacity>
+        )
+    }
 
-  return (
-      <TouchableOpacity style={[styles.field, styles.unRevealed]} onPress={onReveal} onLongPress={onFlag}>
-          <Text>U</Text>
-      </TouchableOpacity>
-  );
-};
+    return (
+        <TouchableOpacity style={[styles.field, styles.unRevealed]} onPress={onReveal} onLongPress={onFlag}>
+            <Text>U</Text>
+        </TouchableOpacity>
+    );
+})
 
 
 export default Field;

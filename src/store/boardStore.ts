@@ -2,16 +2,13 @@ import {action, computed, makeAutoObservable, observable} from "mobx";
 import {FieldStatus, getFieldByNumberOfMinesAround} from "../utils/types/FieldStatus.ts";
 import randomInteger from "../utils/functions/randomInteger.ts";
 import {GameStatus} from "../utils/types/GameStatus.ts";
+import { FieldData } from "../utils/types/FieldData.ts";
+
+
 
 class BoardStore {
-    @observable
-    board: Array< Array<FieldStatus> > | null = null;
-
-    @observable
-    revealedFields:  Array< Array<boolean> > | null = null;
-
-    @observable
-    flaggedFields:  Array< Array< boolean>> | null = null;
+    @observable.deep
+    board: Array< Array<FieldData> > | null = null;
 
     constructor() {
         makeAutoObservable(this);
@@ -21,20 +18,15 @@ class BoardStore {
     @action
     initEmptyBoard = (size: number) => {
         const localBoard = [];
-        const emptyBooleanBoard = [];
         for (let i = 0; i < size; i++) {
             const row = [];
-            const revealedRow = [];
             for (let j = 0; j < size; j++) {
-                row.push(FieldStatus.EMPTY);
-                revealedRow.push(false);
+                const currentField = new FieldData(FieldStatus.EMPTY, false, false)
+                row.push(currentField);
             }
             localBoard.push(row);
-            emptyBooleanBoard.push(revealedRow);
         }
         this.board = localBoard;
-        this.revealedFields = emptyBooleanBoard;
-        this.flaggedFields = emptyBooleanBoard;
     }
 
     @action
@@ -46,7 +38,7 @@ class BoardStore {
         for (let i = 0; i < numberOfMines; i++) {
             const x = randomInteger(0, this.board.length-1)
             const y = randomInteger(0, this.board.length-1)
-            this.board[x][y] = FieldStatus.MINE;
+            this.board[x][y].value = FieldStatus.MINE;
         }
         this.calculateNearFields();
     }
@@ -68,7 +60,7 @@ class BoardStore {
             const intervalYMax = cy === this.board.length - 1 ? this.board.length - 1 : cy + 1;
             for (let i = intervalXMin; i <= intervalXMax; i++) {
                 for (let j = intervalYMin; j <= intervalYMax; j++) {
-                    if (this.board[i][j] === FieldStatus.MINE) {
+                    if (this.board[i][j].value === FieldStatus.MINE) {
                         counter++;
                     }
                 }
@@ -77,11 +69,11 @@ class BoardStore {
         }
         for (let i = 0; i < this.board.length; i++) {
             for (let j = 0; j < this.board.length; j++) {
-                if (this.board[i][j] == FieldStatus.MINE) {
+                if (this.board[i][j].value == FieldStatus.MINE) {
                     continue;
                 }
                 const numberOfMinesAround = calcMinesAround(i, j);
-                this.board[i][j] = getFieldByNumberOfMinesAround(numberOfMinesAround);
+                this.board[i][j].value = getFieldByNumberOfMinesAround(numberOfMinesAround);
             }
         }
     }
@@ -93,34 +85,34 @@ class BoardStore {
 
     @action
     isRevealed = (keyX: number, keyY: number): boolean => {
-        if (!this.revealedFields) {
+        if (!this.board) {
             return false;
         }
-        return this.revealedFields[keyX][keyY];
+        return this.board[keyX][keyY].isRevealed;
     }
 
     @computed
     isFlagged = (keyX: number, keyY: number): boolean => {
-        if (!this.flaggedFields) {
+        if (!this.board) {
             return false;
         }
-        return this.flaggedFields[keyX][keyY];
+        return this.board[keyX][keyY].isFlagged;
     }
 
     @action
     reveal = (cx: number, cy: number) => {
-        if (!this.revealedFields || !this.board || !this.flaggedFields) {
+        if (!this.board) {
             return;
         }
-        if (this.revealedFields[cx][cy]) {
+        if (this.board[cx][cy].isRevealed) {
             return;
         }
-        if (this.flaggedFields[cx][cy]) {
+        if (this.board[cx][cy].isFlagged) {
             return;
         }
-        this.revealedFields[cx][cy] = true;
+        this.board[cx][cy].isRevealed = true;
 
-        if (this.board[cx][cy] === FieldStatus.EMPTY) {
+        if (this.board[cx][cy].value === FieldStatus.EMPTY) {
             const intervalXMin = cx === 0 ? 0 : cx -1;
             const intervalYMin = cy === 0 ? 0 : cy -1;
             const intervalXMax = cx === this.board.length - 1 ? this.board.length - 1 : cx + 1;
@@ -136,13 +128,13 @@ class BoardStore {
 
     @action
     setFlag =(cx: number, cy: number) => {
-        if (!this.revealedFields || !this.board || !this.flaggedFields) {
+        if (!this.board) {
             return;
         }
-        if(this.revealedFields[cx][cy]) {
+        if(this.board[cx][cy].isRevealed) {
             return;
         }
-        this.flaggedFields[cx][cy] = !this.flaggedFields[cx][cy];
+        this.board[cx][cy].isFlagged = !this.board[cx][cy].isFlagged;
     }
 
     @computed
@@ -154,12 +146,12 @@ class BoardStore {
             }
             problems.push(currentStatus);
         }
-        if (!this.revealedFields || !this.board || !this.flaggedFields) {
+        if (!this.board) {
             return [GameStatus.NOT_STARTED];
         }
         for (let i = 0; i < this.board.length; i++) {
             for (let j = 0; j < this.board.length; j++) {
-                if (this.board[i][j] == FieldStatus.MINE) {
+                if (this.board[i][j].value == FieldStatus.MINE) {
                     if (this.isRevealed(i, j)) {
                         addProblemToList(GameStatus.DEFEATED)
                     }
