@@ -50,9 +50,6 @@ const Board = observer(() => {
                   </View>
               )) }
           </View>
-          <Text>
-              {boardStore.boardStatus}
-          </Text>
       </View>
   );
 })
