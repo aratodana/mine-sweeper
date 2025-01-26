@@ -1,7 +1,7 @@
 import {action, computed, makeAutoObservable, observable} from "mobx";
 import {boardStore} from "./boardStore.ts";
 import {GameStatus} from "../utils/types/GameStatus.ts";
-import {Bonus} from "../utils/types/Bonus.ts";
+import {Bonus, BonusCardData} from "../utils/types/Bonus.ts";
 import levels from "../config/levels.json"
 
 class GameStore {
@@ -9,7 +9,7 @@ class GameStore {
     currentLevel: number = 0;
 
     @observable
-    bonuses: Array<Bonus> = []
+    bonuses: Array<BonusCardData> = []
 
     constructor() {
         makeAutoObservable(this);
@@ -53,7 +53,7 @@ class GameStore {
     }
 
     @action
-    collectBonus = (cx: number, cy: number, bonus: Bonus | null) => {
+    collectBonus = (cx: number, cy: number, bonus: BonusCardData | null) => {
         if (!bonus) {
             return;
         }
@@ -62,13 +62,13 @@ class GameStore {
     }
 
     @action
-    addBonus (bonus:Bonus) {
+    addBonus (bonus:BonusCardData) {
         this.bonuses.push(bonus);
     }
 
     @action
-    removeFirstBonus (bonus:Bonus) {
-        const index = this.bonuses.findIndex(item => item === bonus);
+    removeFirstBonus (bonus:BonusCardData) {
+        const index = this.bonuses.findIndex(item => item.equals(bonus));
         if (index !== -1) {
             this.bonuses.splice(index, 1);
         }

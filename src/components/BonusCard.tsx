@@ -7,7 +7,7 @@
 
 import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
-import {Bonus} from "../utils/types/Bonus.ts";
+import {Bonus, BonusCardData} from "../utils/types/Bonus.ts";
 import {bonusStore} from "../store/bonusStore.ts";
 import {useTranslation} from "react-i18next";
 
@@ -31,36 +31,72 @@ const styles = StyleSheet.create({
         flexBasis: "30%"
     }
 });
-const BonusCard = ({ bonus }: { bonus: Bonus }): JSX.Element => {
+const BonusCard = ({ bonus }: { bonus: BonusCardData }): JSX.Element => {
     const { t } = useTranslation();
 
     const bonusConfig = [
         {
-            bonus: Bonus.NEW_BONUS,
+            bonus: new BonusCardData(Bonus.NEW_BONUS, 1),
             callback: bonusStore.newBonus,
-            title: 'New Bonus',
-            description: 'Grand you a new random bonus'
+            title: t("bonus.new_bonus.type_1.title"),
+            description: t("bonus.new_bonus.type_1.description")
         },
         {
-            bonus: Bonus.FLAG_RANDOM_MINE,
+            bonus: new BonusCardData(Bonus.NEW_BONUS, 2),
+            callback: bonusStore.newBonus,
+            title: t("bonus.new_bonus.type_2.title"),
+            description: t("bonus.new_bonus.type_2.description")
+        },
+        {
+            bonus: new BonusCardData(Bonus.NEW_BONUS, 3),
+            callback: bonusStore.newBonus,
+            title: t("bonus.new_bonus.type_3.title"),
+            description: t("bonus.new_bonus.type_3.description")
+        },
+        {
+            bonus: new BonusCardData(Bonus.FLAG_RANDOM_MINE, 1),
             callback: bonusStore.flagRandomMine,
-            title: 'Flag random mine',
-            description: 'Flags a random mine'
+            title: t("bonus.flag_random_mine.type_1.title"),
+            description: t("bonus.flag_random_mine.type_1.description")
         },
         {
-            bonus: Bonus.REVEAL_RANDOM_FIELD,
+            bonus: new BonusCardData(Bonus.FLAG_RANDOM_MINE, 2),
+            callback: bonusStore.flagRandomMine,
+            title: t("bonus.flag_random_mine.type_2.title"),
+            description: t("bonus.flag_random_mine.type_2.description")
+        },
+        {
+            bonus: new BonusCardData(Bonus.FLAG_RANDOM_MINE, 3),
+            callback: bonusStore.flagRandomMine,
+            title: t("bonus.flag_random_mine.type_3.title"),
+            description: t("bonus.flag_random_mine.type_3.description")
+        },
+        {
+            bonus: new BonusCardData(Bonus.REVEAL_RANDOM_FIELD, 1),
             callback: bonusStore.revealRandomField,
-            title: 'Reveal a random field',
-            description: 'Reveal a random field if it is not a mine'
+            title: t("bonus.reveal_random_field.type_1.title"),
+            description: t("bonus.reveal_random_field.type_1.description")
+        },
+        {
+            bonus: new BonusCardData(Bonus.REVEAL_RANDOM_FIELD, 2),
+            callback: bonusStore.revealRandomField,
+            title: t("bonus.reveal_random_field.type_2.title"),
+            description: t("bonus.reveal_random_field.type_2.description")
+        },
+        {
+            bonus: new BonusCardData(Bonus.REVEAL_RANDOM_FIELD, 3),
+            callback: bonusStore.revealRandomField,
+            title: t("bonus.reveal_random_field.type_3.title"),
+            description: t("bonus.reveal_random_field.type_3.description")
         }
     ]
 
-    const current = bonusConfig.find(config => config.bonus === bonus);
+    const current = bonusConfig.find(config => config.bonus.equals(bonus));
     if (!current) {
         return <View></View>;
     }
 
-    return  <TouchableOpacity style={styles.card} onPress={current.callback}>
+    return  <TouchableOpacity style={styles.card} onPress={() => current.callback(bonus)}>
                 <Text style={styles.bonusTitle}>
                     { current.title }
                 </Text>

@@ -2,7 +2,7 @@ import {action, makeAutoObservable} from "mobx";
 import {FieldStatus} from "../utils/types/FieldStatus.ts";
 import {boardStore} from "./boardStore.ts";
 import {gameStore} from "./gameStore.ts";
-import {Bonus, getRandomBonus} from "../utils/types/Bonus.ts";
+import {Bonus, BonusCardData, getRandomBonus} from "../utils/types/Bonus.ts";
 
 
 class BonusStore {
@@ -11,7 +11,7 @@ class BonusStore {
     }
 
     @action
-    flagRandomMine () {
+    flagRandomMine (source:BonusCardData) {
         if (!boardStore.board) {
             console.warn('No board while calling flagRandomMine');
             return;
@@ -24,11 +24,11 @@ class BonusStore {
             return;
         }
         boardStore.setFlag(randomElement.cx, randomElement.cy);
-        gameStore.removeFirstBonus(Bonus.FLAG_RANDOM_MINE);
+        gameStore.removeFirstBonus(source);
     }
 
     @action
-    revealRandomField () {
+    revealRandomField (source:BonusCardData) {
         if (!boardStore.board) {
             console.warn('No board while calling flagRandomMine');
             return;
@@ -41,13 +41,13 @@ class BonusStore {
             return;
         }
         boardStore.reveal(randomElement.cx, randomElement.cy);
-        gameStore.removeFirstBonus(Bonus.REVEAL_RANDOM_FIELD);
+        gameStore.removeFirstBonus(source);
     }
 
     @action
-    newBonus () {
+    newBonus (source:BonusCardData) {
         gameStore.addBonus(getRandomBonus());
-        gameStore.removeFirstBonus(Bonus.NEW_BONUS);
+        gameStore.removeFirstBonus(source);
     }
 }
 
