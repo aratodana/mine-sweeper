@@ -4,6 +4,7 @@ import randomInteger from "../utils/functions/randomInteger.ts";
 
 class BoardStore {
     board: Array< Array<FieldStatus> > | null = null;
+    revealedFields:  Array< Array<boolean> > | null = null;
 
     constructor() {
         makeAutoObservable(this);
@@ -11,14 +12,19 @@ class BoardStore {
 
     initEmptyBoard (size: number) {
         const localBoard = [];
+        const revealedBoard = [];
         for (let i = 0; i < size; i++) {
             const row = [];
+            const revealedRow = [];
             for (let j = 0; j < size; j++) {
                 row.push(FieldStatus.EMPTY);
+                revealedRow.push(false);
             }
             localBoard.push(row);
+            revealedBoard.push(revealedRow);
         }
         this.board = localBoard;
+        this.revealedFields = revealedBoard;
     }
 
     addRandomMines (numberOfMines: number) {
@@ -72,6 +78,19 @@ class BoardStore {
         return this.board;
     }
 
+    isRevealed(keyX: number, keyY: number): boolean {
+        if (!this.revealedFields) {
+            return false;
+        }
+        return this.revealedFields[keyX][keyY];
+    }
+
+    reveal (keyX: number, keyY: number) {
+        if (!this.revealedFields) {
+            return;
+        }
+        this.revealedFields[keyX][keyY] = true;
+    }
 }
 
 export const boardStore = new BoardStore();
