@@ -1,7 +1,14 @@
 import {FieldStatus} from "./FieldStatus.ts";
 import {makeAutoObservable, observable} from "mobx";
+import {Bonus} from "./Bonus.ts";
 
 class FieldData {
+    @observable
+    cx: number;
+
+    @observable
+    cy: number;
+
     @observable
     value: FieldStatus;
 
@@ -11,10 +18,16 @@ class FieldData {
     @observable
     isFlagged: boolean;
 
-    constructor(value: FieldStatus, isRevealed: boolean, isFlagged: boolean) {
+    @observable
+    bonus: Bonus | null;
+
+    constructor(cx:number, cy:number, value:FieldStatus, isRevealed:boolean, isFlagged:boolean) {
+        this.cx = cx;
+        this.cy = cy;
         this.value = value;
         this.isRevealed = isRevealed;
         this.isFlagged = isFlagged;
+        this.bonus = null;
         makeAutoObservable(this);
     }
 }

@@ -3,6 +3,7 @@ import {FieldStatus, getFieldByNumberOfMinesAround} from "../utils/types/FieldSt
 import randomInteger from "../utils/functions/randomInteger.ts";
 import {GameStatus} from "../utils/types/GameStatus.ts";
 import { FieldData } from "../utils/types/FieldData.ts";
+import {Bonus, getRandomBonus} from "../utils/types/Bonus.ts";
 
 
 
@@ -21,7 +22,7 @@ class BoardStore {
         for (let i = 0; i < size; i++) {
             const row = [];
             for (let j = 0; j < size; j++) {
-                const currentField = new FieldData(FieldStatus.EMPTY, false, false)
+                const currentField = new FieldData(i, j, FieldStatus.EMPTY, false, false)
                 row.push(currentField);
             }
             localBoard.push(row);
@@ -42,6 +43,34 @@ class BoardStore {
         }
         this.calculateNearFields();
     }
+
+    @action
+    addRandomBonuses = (numberOfBonuses: number) => {
+        if (!this.board) {
+            console.warn('Call addRandomMines without board');
+            return;
+        }
+
+        let i = 0;
+        while (i < numberOfBonuses) {
+            const x = randomInteger(0, this.board.length-1)
+            const y = randomInteger(0, this.board.length-1)
+            if (this.board[x][y].value !== FieldStatus.MINE) {
+                this.board[x][y].bonus = getRandomBonus();
+                i++;
+            }
+        }
+        this.calculateNearFields();
+    }
+
+    @action
+    removeBonus = (cx: number, cy: number) => {
+        if (!this.board) {
+            return;
+        }
+        this.board[cx][cy].bonus = null;
+    }
+
     @action
     calculateNearFields = () => {
         if (!this.board) {

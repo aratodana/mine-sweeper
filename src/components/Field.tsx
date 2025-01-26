@@ -16,6 +16,7 @@ import { observer } from "mobx-react-lite";
 import { boardStore } from "../store/boardStore.ts";
 import {FieldStatus} from "../utils/types/FieldStatus.ts";
 import {FieldData} from "../utils/types/FieldData.ts";
+import {gameStore} from "../store/gameStore.ts";
 
 const styles = StyleSheet.create({
     field: {
@@ -32,6 +33,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'red'
     },
     flagged: {
+        backgroundColor: 'purple'
+    },
+    bonus: {
         backgroundColor: 'green'
     }
 });
@@ -43,6 +47,15 @@ interface FieldProps {
 }
 
 const Field = observer(({fieldData, onReveal, onFlag}: FieldProps) => {
+
+    if (fieldData.isRevealed && fieldData.bonus) {
+        return (
+            <TouchableOpacity style={[styles.field, styles.bonus]} onPress={() => gameStore.collectBonus(fieldData.cx, fieldData.cy, fieldData.bonus)}>
+                <Text>B</Text>
+            </TouchableOpacity>
+        )
+    }
+
     if (fieldData.isRevealed) {
         return (
             <View style={[styles.field, styles.revealed]}>

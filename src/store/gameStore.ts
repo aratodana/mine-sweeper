@@ -1,10 +1,14 @@
 import {action, computed, makeAutoObservable, observable} from "mobx";
 import {boardStore} from "./boardStore.ts";
 import {GameStatus} from "../utils/types/GameStatus.ts";
+import {Bonus} from "../utils/types/Bonus.ts";
 
 class GameStore {
     @observable
     currentLevel: number = 0;
+
+    @observable
+    bonuses: Array<Bonus> = []
 
     constructor() {
         makeAutoObservable(this);
@@ -31,12 +35,22 @@ class GameStore {
         boardStore.initEmptyBoard(6);
         boardStore.addRandomMines(1);
         boardStore.calculateNearFields();
+        boardStore.addRandomBonuses(3)
     }
 
     @action
     startNextLevel = () => {
         this.currentLevel++;
         this.startGameByLevel();
+    }
+
+    @action
+    collectBonus = (cx: number, cy: number, bonus: Bonus | null) => {
+        if (!bonus) {
+            return;
+        }
+        this.bonuses.push(bonus);
+        boardStore.removeBonus(cx, cy);
     }
 }
 
