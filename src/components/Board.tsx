@@ -40,14 +40,19 @@ const Board = observer(() => {
    }
 
   return (
-      <View style={styles.board}>
-          { boardStore.board.map((row, keyX) => (
-              <View key={`row_${keyX}`} style={styles.row}>
-                  { row.map((field, keyY) => (
-                      <Field key={`field_${keyX}-${keyY}`} value={field} isRevealed={boardStore.isRevealed(keyX, keyY)} isFlagged={boardStore.isFlagged(keyX, keyY)} onReveal={() => boardStore.reveal(keyX, keyY)}  onFlag={() => boardStore.setFlag(keyX, keyY)} />
-                  )) }
-              </View>
-          )) }
+      <View>
+          <View style={styles.board}>
+              { boardStore.board.map((row, keyX) => (
+                  <View key={`row_${keyX}`} style={styles.row}>
+                      { row.map((field, keyY) => (
+                          <Field key={`field_${keyX}-${keyY}`} value={field} isRevealed={boardStore.isRevealed(keyX, keyY)} isFlagged={boardStore.isFlagged(keyX, keyY)} onReveal={() => boardStore.reveal(keyX, keyY)}  onFlag={() => boardStore.setFlag(keyX, keyY)} />
+                      )) }
+                  </View>
+              )) }
+          </View>
+          <Text>
+              {boardStore.boardStatus}
+          </Text>
       </View>
   );
 })

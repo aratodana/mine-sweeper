@@ -1,6 +1,7 @@
 import {makeAutoObservable} from "mobx";
 import {FieldStatus, getFieldByNumberOfMinesAround} from "../utils/types/FieldStatus.ts";
 import randomInteger from "../utils/functions/randomInteger.ts";
+import {GameStatus} from "../utils/types/GameStatus.ts";
 
 class BoardStore {
     board: Array< Array<FieldStatus> > | null = null;
@@ -128,6 +129,33 @@ class BoardStore {
             return;
         }
         this.flaggedFields[cx][cy] = !this.flaggedFields[cx][cy];
+    }
+
+    get boardStatus (): GameStatus {
+        if (!this.revealedFields || !this.board || !this.flaggedFields) {
+            return GameStatus.NOT_STARTED;
+        }
+        for (let i = 0; i < this.board.length; i++) {
+            for (let j = 0; j < this.board.length; j++) {
+                if (this.board[i][j] == FieldStatus.MINE) {
+                    if (this.isRevealed(i, j)) {
+                        return GameStatus.DEFEATED;
+                    }
+                    if (!this.isFlagged(i, j)) {
+                        return GameStatus.NOT_ALL_MINES_FLAGGED;
+                    }
+                }
+                else {
+                    if (!this.isRevealed(i, j)) {
+                        return GameStatus.NOT_ALL_EMPTY_REVEALED
+                    }
+                    if (this.isFlagged(i, j)) {
+                        return GameStatus.EMPTY_FIELD_FLAGGED
+                    }
+                }
+            }
+        }
+        return GameStatus.FINISHED
     }
 }
 
