@@ -24,7 +24,7 @@ const BonusListView = observer(() => {
       <View style={styles.container}>
           <FlatList
               data={gameStore.getBonuses}
-              renderItem={({ item }) => <BonusCardView bonus={item} />}
+              renderItem={({ item }) => <BonusCardView card={item} />}
               keyExtractor={(item, index) => `${item}_${index}`}
               horizontal={true}
               showsHorizontalScrollIndicator={true}

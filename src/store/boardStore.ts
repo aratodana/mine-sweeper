@@ -3,7 +3,7 @@ import {FieldStatus, getFieldByNumberOfMinesAround} from "../utils/enum/FieldSta
 import randomInteger from "../utils/functions/randomInteger.ts";
 import {GameStatus} from "../utils/enum/GameStatus.ts";
 import { Field } from "../utils/types/Field.ts";
-import {Bonus, getRandomBonus} from "../utils/types/Bonus.ts";
+import {getRandomBonus} from "../utils/types/Bonus.ts";
 
 
 

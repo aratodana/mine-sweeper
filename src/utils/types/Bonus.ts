@@ -1,28 +1,38 @@
-enum Bonus {
-    REVEAL_RANDOM_FIELD = 'REVEAL_RANDOM_FIELD',
-    FLAG_RANDOM_MINE = 'FLAG_RANDOM_MINE',
-    NEW_BONUS = 'NEW_BONUS',
-}
+import bonusCards from '../../config/bonusCards.ts'
+import uuid from 'react-native-uuid';
 
 class BonusCardData {
-    major: Bonus
-    minor: number
+    id: string;
+    title: string;
+    description: string;
+    price: number;
+    callback: () => void;
 
-    constructor(major:Bonus, minor:number) {
-        this.major = major
-        this.minor = minor;
+    constructor(title:string, description:string, price:number, callback: () => void) {
+        this.id = uuid.v4();
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.callback = callback;
     }
 
     equals (other:BonusCardData):boolean {
-        return other.major === this.major && other.minor === this.minor
+        return this.id === other.id;
+    }
+
+    similar (other:BonusCardData):boolean {
+        return this.title === other.title && this.description === other.description && this.price === other.price;
     }
 }
 
+
+
+
 function getRandomBonus (): BonusCardData {
-    const enumValues = Object.values(Bonus);
-    const index = Math.floor(Math.random() * enumValues.length);
-    const randomType = Math.floor(Math.random() * 3) + 1;
-    return new BonusCardData(enumValues[index], randomType);
+    const probabilityArray = bonusCards;
+    const randomIndex = Math.floor(Math.random() * probabilityArray.length);
+    const current = probabilityArray[randomIndex];
+    return new BonusCardData(current.title, current.description, current.price, current.callback);
 }
 
-export { Bonus, getRandomBonus, BonusCardData };
+export { getRandomBonus, BonusCardData };

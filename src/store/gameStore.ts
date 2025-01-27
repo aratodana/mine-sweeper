@@ -1,8 +1,10 @@
 import {action, computed, makeAutoObservable, observable} from "mobx";
 import {boardStore} from "./boardStore.ts";
 import {GameStatus} from "../utils/enum/GameStatus.ts";
-import {Bonus, BonusCardData} from "../utils/types/Bonus.ts";
+import { BonusCardData} from "../utils/types/Bonus.ts";
 import levels from "../config/levels.json"
+import bonusCards from "../config/bonusCards.ts";
+import {bonusStore} from "./bonusStore.ts";
 
 class GameStore {
     @observable
@@ -86,15 +88,22 @@ class GameStore {
     }
 
     @action
-    removeFirstBonus (bonus:BonusCardData) {
-        const index = this.bonuses.findIndex(item => item.equals(bonus));
-        if (index !== -1) {
-            this.bonuses.splice(index, 1);
-        }
+    removeBonus (card:BonusCardData) {
+        this.bonuses = this.bonuses.filter(bonus => !bonus.equals(card));
     }
 
     spendCoins(price: number) {
         this.coins -= price;
+    }
+
+    handleCardPress (card:BonusCardData) {
+        if (this.coins < card.price) {
+            console.warn('Not enough coins');
+            return;
+        }
+        this.spendCoins(card.price);
+        card.callback()
+        this.removeBonus(card);
     }
 }
 

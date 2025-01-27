@@ -10,7 +10,6 @@ import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import {BonusCardData} from "../utils/types/Bonus.ts";
 import {useTranslation} from "react-i18next";
 import {gameStore} from "../store/gameStore.ts";
-import bonusCards from '../config/bonusCards.ts'
 
 const styles = StyleSheet.create({
     card: {
@@ -32,31 +31,15 @@ const styles = StyleSheet.create({
         flexBasis: "30%"
     }
 });
-const BonusCardView = ({ bonus }: { bonus: BonusCardData }): JSX.Element => {
+const BonusCardView = ({ card }: { card: BonusCardData }): JSX.Element => {
     const { t } = useTranslation();
 
-
-
-    const current = bonusCards.find(config => config.bonus.equals(bonus));
-    if (!current) {
-        return <View></View>;
-    }
-
-    const handleCardPress = () => {
-        if (gameStore.coins < current.price) {
-            console.warn('Not enough coins for this card');
-            return;
-        }
-        gameStore.spendCoins(current.price);
-        current.callback(bonus);
-    }
-
-    return  <TouchableOpacity style={styles.card} onPress={handleCardPress}>
+    return  <TouchableOpacity style={styles.card} onPress={() => gameStore.handleCardPress(card)}>
                 <Text style={styles.bonusTitle}>
-                    { t(current.title) }
+                    { t(card.title) }
                 </Text>
                 <Text style={styles.bonusDescription}>
-                    { t(current.description) } ({ current.price })
+                    { t(card.description) } ({ card.price })
                 </Text>
             </TouchableOpacity>
 }
