@@ -8,8 +8,8 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 import {observer} from "mobx-react-lite";
-import {FieldStatus} from "../utils/types/FieldStatus.ts";
-import {FieldData} from "../utils/types/FieldData.ts";
+import {FieldStatus} from "../utils/enum/FieldStatus.ts";
+import {Field} from "../utils/types/Field.ts";
 import {gameStore} from "../store/gameStore.ts";
 
 const styles = StyleSheet.create({
@@ -38,12 +38,12 @@ const styles = StyleSheet.create({
 });
 
 interface FieldProps {
-    fieldData: FieldData;
+    fieldData: Field;
     onReveal: () => void;
     onFlag: () => void;
 }
 
-const Field = observer(({fieldData, onReveal, onFlag}: FieldProps) => {
+const FieldView = observer(({fieldData, onReveal, onFlag}: FieldProps) => {
 
     if (fieldData.isRevealed && fieldData.bonus) {
         return (
@@ -85,4 +85,4 @@ const Field = observer(({fieldData, onReveal, onFlag}: FieldProps) => {
 })
 
 
-export default Field;
+export default FieldView;

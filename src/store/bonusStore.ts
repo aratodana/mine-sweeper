@@ -1,5 +1,5 @@
 import {action, makeAutoObservable} from "mobx";
-import {FieldStatus} from "../utils/types/FieldStatus.ts";
+import {FieldStatus} from "../utils/enum/FieldStatus.ts";
 import {boardStore} from "./boardStore.ts";
 import {gameStore} from "./gameStore.ts";
 import {Bonus, BonusCardData, getRandomBonus} from "../utils/types/Bonus.ts";

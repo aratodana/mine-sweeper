@@ -15,12 +15,12 @@ import {
 } from 'react-native';
 
 import {gameStore} from "./store/gameStore.ts";
-import Board from "./components/Board.tsx";
-import WinModal from "./components/WinModal.tsx";
-import DefeatModal from "./components/DefeatModal.tsx";
-import LevelMarker from "./components/LevelMarker.tsx";
-import BonusList from "./components/BonusList.tsx";
-import CoinMarker from "./components/CoinMarker.tsx";
+import BoardView from "./components/BoardView.tsx";
+import WinModal from "./components/modals/WinModal.tsx";
+import DefeatModal from "./components/modals/DefeatModal.tsx";
+import LevelMarker from "./components/LevelMarkerView.tsx";
+import BonusListView from "./components/BonusListView.tsx";
+import CoinMarkerView from "./components/CoinMarkerView.tsx";
 
 const styles = StyleSheet.create({
     appContainer: {
@@ -59,13 +59,13 @@ function App(): React.JSX.Element {
             <DefeatModal />
             <View style={styles.header}>
                 <LevelMarker />
-                <CoinMarker />
+                <CoinMarkerView />
             </View>
             <View style={styles.board}>
-                <Board  />
+                <BoardView  />
             </View>
             <View style={styles.bonusList}>
-                <BonusList />
+                <BonusListView />
             </View>
         </SafeAreaView>
     );

@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import { observer } from "mobx-react-lite";
 
-import { gameStore } from "../store/gameStore.ts";
+import { gameStore } from "../../store/gameStore.ts";
 import {useTranslation} from "react-i18next";
 
 const styles = StyleSheet.create({

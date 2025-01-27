@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         flexBasis: "30%"
     }
 });
-const BonusCard = ({ bonus }: { bonus: BonusCardData }): JSX.Element => {
+const BonusCardView = ({ bonus }: { bonus: BonusCardData }): JSX.Element => {
     const { t } = useTranslation();
 
 
@@ -62,4 +62,4 @@ const BonusCard = ({ bonus }: { bonus: BonusCardData }): JSX.Element => {
 }
 
 
-export default BonusCard;
+export default BonusCardView;

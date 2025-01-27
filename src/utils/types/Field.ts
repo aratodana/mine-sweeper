@@ -1,8 +1,8 @@
-import {FieldStatus} from "./FieldStatus.ts";
+import {FieldStatus} from "../enum/FieldStatus.ts";
 import {makeAutoObservable, observable} from "mobx";
 import {BonusCardData} from "./Bonus.ts";
 
-class FieldData {
+class Field {
     @observable
     cx: number;
 
@@ -36,4 +36,4 @@ class FieldData {
     }
 }
 
-export { FieldData }
+export { Field }

@@ -1,15 +1,15 @@
 import {action, computed, makeAutoObservable, observable} from "mobx";
-import {FieldStatus, getFieldByNumberOfMinesAround} from "../utils/types/FieldStatus.ts";
+import {FieldStatus, getFieldByNumberOfMinesAround} from "../utils/enum/FieldStatus.ts";
 import randomInteger from "../utils/functions/randomInteger.ts";
-import {GameStatus} from "../utils/types/GameStatus.ts";
-import { FieldData } from "../utils/types/FieldData.ts";
+import {GameStatus} from "../utils/enum/GameStatus.ts";
+import { Field } from "../utils/types/Field.ts";
 import {Bonus, getRandomBonus} from "../utils/types/Bonus.ts";
 
 
 
 class BoardStore {
     @observable.deep
-    board: Array< Array<FieldData> > | null = null;
+    board: Array< Array<Field> > | null = null;
 
     constructor() {
         makeAutoObservable(this);
@@ -22,7 +22,7 @@ class BoardStore {
         for (let i = 0; i < size; i++) {
             const row = [];
             for (let j = 0; j < size; j++) {
-                const currentField = new FieldData(i, j, FieldStatus.EMPTY, false, false)
+                const currentField = new Field(i, j, FieldStatus.EMPTY, false, false)
                 row.push(currentField);
             }
             localBoard.push(row);

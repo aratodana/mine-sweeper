@@ -14,7 +14,7 @@ import {
 import { observer } from "mobx-react-lite";
 
 import { boardStore } from "../store/boardStore.ts";
-import Field from "./Field.tsx";
+import FieldView from "./FieldView.tsx";
 
 
 function EmptyBoard (): React.JSX.Element {
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     }
 });
 
-const Board = observer(() => {
+const BoardView = observer(() => {
 
    if (!boardStore.board) {
        return EmptyBoard();
@@ -46,7 +46,7 @@ const Board = observer(() => {
               { boardStore.board.map((row, keyX) => (
                   <View key={`row_${keyX}`} style={styles.row}>
                       { row.map((field, keyY) => (
-                          <Field key={`field_${keyX}-${keyY}`} fieldData={field} onReveal={() => boardStore.reveal(keyX, keyY)}  onFlag={() => boardStore.setFlag(keyX, keyY)} />
+                          <FieldView key={`field_${keyX}-${keyY}`} fieldData={field} onReveal={() => boardStore.reveal(keyX, keyY)} onFlag={() => boardStore.setFlag(keyX, keyY)} />
                       )) }
                   </View>
               )) }
@@ -56,4 +56,4 @@ const Board = observer(() => {
 })
 
 
-export default Board;
+export default BoardView;

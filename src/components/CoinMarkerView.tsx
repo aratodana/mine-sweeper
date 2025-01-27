@@ -14,29 +14,28 @@ import {
 import { observer } from "mobx-react-lite";
 
 import { boardStore } from "../store/boardStore.ts";
-import {FieldStatus} from "../utils/types/FieldStatus.ts";
+import {FieldStatus} from "../utils/enum/FieldStatus.ts";
 import {gameStore} from "../store/gameStore.ts";
 import {useTranslation} from "react-i18next";
 import '../i18n.ts'
 
 const styles = StyleSheet.create({
     container: {
-
     }
 });
 
 
-const Field = observer(() => {
+const CoinMarkerView = observer(() => {
     const { t } = useTranslation();
 
   return (
       <View style={styles.container}>
           <Text>
-              {t("header.level")}: { gameStore.currentLevel + 1 }
+              {t("header.coins")}: { gameStore.coins }
           </Text>
       </View>
   );
 });
 
 
-export default Field;
+export default CoinMarkerView;

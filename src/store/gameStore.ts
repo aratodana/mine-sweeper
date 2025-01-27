@@ -1,6 +1,6 @@
 import {action, computed, makeAutoObservable, observable} from "mobx";
 import {boardStore} from "./boardStore.ts";
-import {GameStatus} from "../utils/types/GameStatus.ts";
+import {GameStatus} from "../utils/enum/GameStatus.ts";
 import {Bonus, BonusCardData} from "../utils/types/Bonus.ts";
 import levels from "../config/levels.json"
 
