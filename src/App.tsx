@@ -21,6 +21,7 @@ import DefeatModal from "./components/modals/DefeatModal.tsx";
 import LevelMarker from "./components/LevelMarkerView.tsx";
 import BonusListView from "./components/BonusListView.tsx";
 import CoinMarkerView from "./components/CoinMarkerView.tsx";
+import CardViewModal from "./components/modals/CardViewModal.tsx";
 
 const styles = StyleSheet.create({
     appContainer: {
@@ -55,6 +56,7 @@ function App(): React.JSX.Element {
 
     return (
         <SafeAreaView style={styles.appContainer}>
+            <CardViewModal />
             <WinModal />
             <DefeatModal />
             <View style={styles.header}>

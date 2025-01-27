@@ -11,11 +11,15 @@ import {observer} from "mobx-react-lite";
 
 import {gameStore} from "../store/gameStore.ts";
 import BonusCardView from "./BonusCardView.tsx";
+import {uiStore} from "../store/uiStore.ts";
 
 const styles = StyleSheet.create({
     container: {
         paddingLeft: 4,
         paddingRight: 4,
+    },
+    card: {
+        width: 150
     }
 });
 
@@ -24,7 +28,7 @@ const BonusListView = observer(() => {
       <View style={styles.container}>
           <FlatList
               data={gameStore.getBonuses}
-              renderItem={({ item }) => <BonusCardView card={item} />}
+              renderItem={({ item }) => <View style={styles.card}><BonusCardView card={item} onPress={() => gameStore.useBonusCard(item)} onLongPress={() => uiStore.openCardViewModal(item)} /></View>}
               keyExtractor={(item, index) => `${item}_${index}`}
               horizontal={true}
               showsHorizontalScrollIndicator={true}

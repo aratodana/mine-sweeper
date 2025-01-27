@@ -13,7 +13,7 @@ import {gameStore} from "../store/gameStore.ts";
 
 const styles = StyleSheet.create({
     card: {
-        width: 150,
+        width: '100%',
         aspectRatio: 0.75,
         borderRadius: 4,
         backgroundColor: '#a7a7a7',
@@ -31,10 +31,18 @@ const styles = StyleSheet.create({
         flexBasis: "30%"
     }
 });
-const BonusCardView = ({ card }: { card: BonusCard }): JSX.Element => {
+
+interface Props {
+    card: BonusCard,
+    onPress?: (() => void),
+    onLongPress?: (() => void)
+}
+
+
+const BonusCardView = ({ card, onPress = () => {}, onLongPress = () => {} }: Props): JSX.Element => {
     const { t } = useTranslation();
 
-    return  <TouchableOpacity style={styles.card} onPress={() => gameStore.handleCardPress(card)}>
+    return  <TouchableOpacity style={styles.card} onPress={onPress} onLongPress={onLongPress}>
                 <Text style={styles.bonusTitle}>
                     { t(card.title) }
                 </Text>

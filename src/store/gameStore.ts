@@ -96,7 +96,7 @@ class GameStore {
         this.coins -= price;
     }
 
-    handleCardPress (card:BonusCard) {
+    useBonusCard (card:BonusCard) {
         if (this.coins < card.price) {
             console.warn('Not enough coins');
             return;
