@@ -1,4 +1,4 @@
-import {BonusCardData} from "../utils/types/Bonus.ts";
+import {BonusCard} from "../utils/types/Bonus.ts";
 import {bonusStore} from "../store/bonusStore.ts";
 
 export default [

@@ -1,7 +1,7 @@
 import {action, computed, makeAutoObservable, observable} from "mobx";
 import {boardStore} from "./boardStore.ts";
 import {GameStatus} from "../utils/enum/GameStatus.ts";
-import { BonusCardData} from "../utils/types/Bonus.ts";
+import { BonusCard} from "../utils/types/Bonus.ts";
 import levels from "../config/levels.json"
 import bonusCards from "../config/bonusCards.ts";
 import {bonusStore} from "./bonusStore.ts";
@@ -11,7 +11,7 @@ class GameStore {
     currentLevel: number = 0;
 
     @observable
-    bonuses: Array<BonusCardData> = []
+    bonuses: Array<BonusCard> = []
 
     @observable
     coins: number = 0;
@@ -60,7 +60,7 @@ class GameStore {
     }
 
     @action
-    collectBonus = (cx: number, cy: number, bonus: BonusCardData | null) => {
+    collectBonus = (cx: number, cy: number, bonus: BonusCard | null) => {
         if (!bonus) {
             return;
         }
@@ -79,7 +79,7 @@ class GameStore {
     }
 
     @action
-    addBonus (bonus:BonusCardData) {
+    addBonus (bonus:BonusCard) {
         this.bonuses.push(bonus);
     }
     @action
@@ -88,7 +88,7 @@ class GameStore {
     }
 
     @action
-    removeBonus (card:BonusCardData) {
+    removeBonus (card:BonusCard) {
         this.bonuses = this.bonuses.filter(bonus => !bonus.equals(card));
     }
 
@@ -96,7 +96,7 @@ class GameStore {
         this.coins -= price;
     }
 
-    handleCardPress (card:BonusCardData) {
+    handleCardPress (card:BonusCard) {
         if (this.coins < card.price) {
             console.warn('Not enough coins');
             return;

@@ -7,7 +7,7 @@
 
 import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
-import {BonusCardData} from "../utils/types/Bonus.ts";
+import {BonusCard} from "../utils/types/Bonus.ts";
 import {useTranslation} from "react-i18next";
 import {gameStore} from "../store/gameStore.ts";
 
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         flexBasis: "30%"
     }
 });
-const BonusCardView = ({ card }: { card: BonusCardData }): JSX.Element => {
+const BonusCardView = ({ card }: { card: BonusCard }): JSX.Element => {
     const { t } = useTranslation();
 
     return  <TouchableOpacity style={styles.card} onPress={() => gameStore.handleCardPress(card)}>
