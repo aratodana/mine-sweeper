@@ -21,22 +21,21 @@ import '../i18n.ts'
 
 const styles = StyleSheet.create({
     container: {
-
     }
 });
 
 
-const Field = observer(() => {
+const CoinMarker = observer(() => {
     const { t } = useTranslation();
 
   return (
       <View style={styles.container}>
           <Text>
-              {t("header.level")}: { gameStore.currentLevel + 1 }
+              {t("header.coins")}: { gameStore.coins }
           </Text>
       </View>
   );
 });
 
 
-export default Field;
+export default CoinMarker;

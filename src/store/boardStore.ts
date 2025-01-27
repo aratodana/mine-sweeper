@@ -64,11 +64,40 @@ class BoardStore {
     }
 
     @action
+    addRandomCoins = (numberOfCoins: number) => {
+        if (!this.board) {
+            console.warn('Call addRandomMines without board');
+            return;
+        }
+
+
+
+        let i = 0;
+        while (i < numberOfCoins) {
+            const x = randomInteger(0, this.board.length-1)
+            const y = randomInteger(0, this.board.length-1)
+            if (this.board[x][y].value !== FieldStatus.MINE) {
+                this.board[x][y].coins = randomInteger(1, 5)
+                i++;
+            }
+        }
+        this.calculateNearFields();
+    }
+
+    @action
     removeBonus = (cx: number, cy: number) => {
         if (!this.board) {
             return;
         }
         this.board[cx][cy].bonus = null;
+    }
+
+    @action
+    removeCoin = (cx: number, cy: number) => {
+        if (!this.board) {
+            return;
+        }
+        this.board[cx][cy].coins = null;
     }
 
     @action

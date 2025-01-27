@@ -11,6 +11,9 @@ class GameStore {
     @observable
     bonuses: Array<BonusCardData> = []
 
+    @observable
+    coins: number = 0;
+
     constructor() {
         makeAutoObservable(this);
     }
@@ -33,6 +36,7 @@ class GameStore {
     @action
     restartGame = ()=> {
         this.currentLevel = 0;
+        this.coins = 0;
         this.startGameByLevel();
         this.bonuses = [];
     }
@@ -44,6 +48,7 @@ class GameStore {
         boardStore.addRandomMines(currentLevel.mine);
         boardStore.calculateNearFields();
         boardStore.addRandomBonuses(currentLevel.bonus)
+        boardStore.addRandomCoins(currentLevel.coins);
     }
 
     @action
@@ -61,9 +66,23 @@ class GameStore {
         boardStore.removeBonus(cx, cy);
     }
 
+
+    @action
+    collectCoins = (cx: number, cy: number, coin: number | null) => {
+        if (!coin) {
+            return;
+        }
+        this.addCoin(coin);
+        boardStore.removeCoin(cx, cy);
+    }
+
     @action
     addBonus (bonus:BonusCardData) {
         this.bonuses.push(bonus);
+    }
+    @action
+    addCoin (coins:number) {
+        this.coins += coins;
     }
 
     @action
@@ -72,6 +91,10 @@ class GameStore {
         if (index !== -1) {
             this.bonuses.splice(index, 1);
         }
+    }
+
+    spendCoins(price: number) {
+        this.coins -= price;
     }
 }
 

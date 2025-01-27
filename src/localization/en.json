@@ -1,6 +1,7 @@
 {
   "header": {
-    "level": "Level"
+    "level": "Level",
+    "coins": "Coins",
   },
   "modal": {
     "win": {

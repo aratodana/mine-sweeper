@@ -21,6 +21,9 @@ class FieldData {
     @observable
     bonus: BonusCardData | null;
 
+    @observable
+    coins: number | null;
+
     constructor(cx:number, cy:number, value:FieldStatus, isRevealed:boolean, isFlagged:boolean) {
         this.cx = cx;
         this.cy = cy;
@@ -28,6 +31,7 @@ class FieldData {
         this.isRevealed = isRevealed;
         this.isFlagged = isFlagged;
         this.bonus = null;
+        this.coins = null;
         makeAutoObservable(this);
     }
 }

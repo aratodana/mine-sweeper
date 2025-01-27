@@ -53,6 +53,14 @@ const Field = observer(({fieldData, onReveal, onFlag}: FieldProps) => {
         )
     }
 
+    if (fieldData.isRevealed && fieldData.coins) {
+        return (
+            <TouchableOpacity style={[styles.field, styles.bonus]} onPress={() => gameStore.collectCoins(fieldData.cx, fieldData.cy, fieldData.coins)}>
+                <Text>💰</Text>
+            </TouchableOpacity>
+        )
+    }
+
     if (fieldData.isRevealed) {
         return (
             <View style={[styles.field, styles.revealed]}>

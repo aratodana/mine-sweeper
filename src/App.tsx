@@ -20,6 +20,7 @@ import WinModal from "./components/WinModal.tsx";
 import DefeatModal from "./components/DefeatModal.tsx";
 import LevelMarker from "./components/LevelMarker.tsx";
 import BonusList from "./components/BonusList.tsx";
+import CoinMarker from "./components/CoinMarker.tsx";
 
 const styles = StyleSheet.create({
     appContainer: {
@@ -28,6 +29,15 @@ const styles = StyleSheet.create({
     },
     header: {
         flexBasis: 50,
+        backgroundColor: '#a7a7a7',
+        borderRadius: 4,
+        height: '100%',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginLeft: 4,
+        marginRight: 4,
+        flexDirection: 'row',
+        padding: 4,
     },
     board: {
         flexBasis: 'auto'
@@ -49,6 +59,7 @@ function App(): React.JSX.Element {
             <DefeatModal />
             <View style={styles.header}>
                 <LevelMarker />
+                <CoinMarker />
             </View>
             <View style={styles.board}>
                 <Board  />
