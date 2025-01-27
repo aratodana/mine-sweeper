@@ -1,20 +1,20 @@
 [
   {
-  "size": 5,
-  "mine": 1,
-  "bonus": 3,
-  "coins": 3
+    "size": 5,
+    "mine": 1,
+    "bonus": 3,
+    "coins": 3
   },
   {
-  "size": 5,
-  "mine": 2,
-  "bonus": 3,
-  "coins": 3
+    "size": 5,
+    "mine": 2,
+    "bonus": 3,
+    "coins": 3
   },
   {
-  "size": 5,
-  "mine": 3,
-  "bonus": 3,
-  "coins": 3
+    "size": 5,
+    "mine": 3,
+    "bonus": 3,
+    "coins": 3
   }
 ]
