@@ -8,7 +8,7 @@ import ReactNativeHapticFeedback from "react-native-haptic-feedback";
  */
 
 import React from 'react';
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity, ImageBackground} from 'react-native';
 import {Card} from "../utils/types/Card.ts";
 import {useTranslation} from "react-i18next";
 import {gameStore} from "../store/gameStore.ts";
@@ -44,7 +44,7 @@ interface Props {
 const CardView = ({ card, onPress = () => {}, onLongPress = () => {} }: Props): JSX.Element => {
     const { t } = useTranslation();
 
-    return  <TouchableOpacity style={styles.card} onPress={() => {
+    return  <TouchableOpacity  onPress={() => {
         if (card.price <= gameStore.coins) {
             ReactNativeHapticFeedback.trigger("impactLight");
         } else {
@@ -52,14 +52,16 @@ const CardView = ({ card, onPress = () => {}, onLongPress = () => {} }: Props): 
         }
         onPress()
     }} onLongPress={onLongPress}>
-                <Text style={styles.cardTitle}>
-                    { t(card.title) }
-                </Text>
-                <Text style={styles.cardDescription}>
-                    { t(card.description) }
-                    ({ card.level }  { card.price })
-                </Text>
-            </TouchableOpacity>
+        <ImageBackground style={styles.card} source={require('../../assets/cards/celestial-hammer.png')}>
+            <Text style={styles.cardTitle}>
+                { t(card.title) }
+            </Text>
+            <Text style={styles.cardDescription}>
+                { t(card.description) }
+                ({ card.level }  { card.price })
+            </Text>
+        </ImageBackground>
+    </TouchableOpacity>
 }
 
 
