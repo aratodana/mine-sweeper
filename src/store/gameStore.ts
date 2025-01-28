@@ -99,7 +99,6 @@ class GameStore {
             console.warn('Not enough coins');
             return;
         }
-        debugger;
         this.spendCoins(card.price);
         card.callback()
         this.removeCard(card);
