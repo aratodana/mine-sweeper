@@ -56,7 +56,8 @@ const CardView = ({ card, onPress = () => {}, onLongPress = () => {} }: Props): 
                     { t(card.title) }
                 </Text>
                 <Text style={styles.cardDescription}>
-                    { t(card.description) } ({ card.price })
+                    { t(card.description) }
+                    ({ card.level }  { card.price })
                 </Text>
             </TouchableOpacity>
 }

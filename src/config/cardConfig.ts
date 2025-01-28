@@ -1,5 +1,5 @@
-import {Card} from "../utils/types/Card.ts";
 import {cardStore} from "../store/cardStore.ts";
+import CardLevel from '../utils/enum/CardLevel'
 
 export default [
     {
@@ -7,6 +7,7 @@ export default [
         description: "new_card.new_bonus.type_1.description",
         price: 2,
         probability: 9,
+        level: CardLevel.COMMON,
         callback: cardStore.newCard,
     },
     {
@@ -14,6 +15,7 @@ export default [
         description: "card.new_card.type_3.description",
         price: 5,
         probability: 5,
+        level: CardLevel.UNIQUE,
         callback: cardStore.newCard,
     },
     {
@@ -21,6 +23,7 @@ export default [
         description: "card.flag_random_mine.type_1.description",
         price: 2,
         probability: 8,
+        level: CardLevel.RARE,
         callback: cardStore.flagRandomMine,
     },
     {
@@ -28,6 +31,7 @@ export default [
         description: "card.flag_random_mine.type_3.description",
         price: 5,
         probability: 4,
+        level: CardLevel.MYTHIC,
         callback: cardStore.flagRandomMine,
     },
     {
@@ -35,6 +39,7 @@ export default [
         description: "card.reveal_random_field.type_1.description",
         price: 2,
         probability: 7,
+        level: CardLevel.RARE,
         callback: cardStore.revealRandomField,
     },
     {
@@ -42,6 +47,7 @@ export default [
         description: "card.reveal_random_field.type_3.description",
         price: 5,
         probability: 5,
+        level: CardLevel.LEGENDARY,
         callback: cardStore.revealRandomField,
     }
 ]
