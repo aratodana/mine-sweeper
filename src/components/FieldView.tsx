@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     flagged: {
         backgroundColor: '#616161',
     },
-    bonus: {
+    card: {
         // backgroundColor: 'green'
     }
 });
@@ -45,9 +45,9 @@ interface FieldProps {
 
 const FieldView = observer(({fieldData, onReveal, onFlag}: FieldProps) => {
 
-    if (fieldData.isRevealed && fieldData.bonus) {
+    if (fieldData.isRevealed && fieldData.card) {
         return (
-            <TouchableOpacity style={[styles.field, styles.bonus]} onPress={() => gameStore.collectBonus(fieldData.cx, fieldData.cy, fieldData.bonus)}>
+            <TouchableOpacity style={[styles.field, styles.card]} onPress={() => gameStore.collectCard(fieldData.cx, fieldData.cy, fieldData.card)}>
                 <Text>🎁</Text>
             </TouchableOpacity>
         )
@@ -55,7 +55,7 @@ const FieldView = observer(({fieldData, onReveal, onFlag}: FieldProps) => {
 
     if (fieldData.isRevealed && fieldData.coins) {
         return (
-            <TouchableOpacity style={[styles.field, styles.bonus]} onPress={() => gameStore.collectCoins(fieldData.cx, fieldData.cy, fieldData.coins)}>
+            <TouchableOpacity style={[styles.field, styles.card]} onPress={() => gameStore.collectCoins(fieldData.cx, fieldData.cy, fieldData.coins)}>
                 <Text>💰</Text>
             </TouchableOpacity>
         )

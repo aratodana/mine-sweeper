@@ -10,7 +10,7 @@ import {FlatList, StyleSheet, Text, TouchableOpacity, View,} from 'react-native'
 import {observer} from "mobx-react-lite";
 
 import {gameStore} from "../store/gameStore.ts";
-import BonusCardView from "./BonusCardView.tsx";
+import CardView from "./CardView.tsx";
 import {uiStore} from "../store/uiStore.ts";
 
 const styles = StyleSheet.create({
@@ -23,12 +23,12 @@ const styles = StyleSheet.create({
     }
 });
 
-const BonusListView = observer(() => {
+const CardDeckView = observer(() => {
     return (
       <View style={styles.container}>
           <FlatList
-              data={gameStore.getBonuses}
-              renderItem={({ item }) => <View style={styles.card}><BonusCardView card={item} onPress={() => gameStore.useBonusCard(item)} onLongPress={() => uiStore.openCardViewModal(item)} /></View>}
+              data={gameStore.getCards}
+              renderItem={({ item }) => <View style={styles.card}><CardView card={item} onPress={() => gameStore.useCard(item)} onLongPress={() => uiStore.openCardViewModal(item)} /></View>}
               keyExtractor={(item, index) => `${item}_${index}`}
               horizontal={true}
               showsHorizontalScrollIndicator={true}
@@ -39,4 +39,4 @@ const BonusListView = observer(() => {
 })
 
 
-export default BonusListView;
+export default CardDeckView;

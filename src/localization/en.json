@@ -13,19 +13,19 @@
       "level": "You reached the level of"
     }
   },
-  "bonus": {
-    "new_bonus": {
+  "card": {
+    "new_card": {
       "type_1": {
-        "title": "New bonus 1",
-        "description": "Add a new random bonus card"
+        "title": "New card 1",
+        "description": "Add a new random card"
       },
       "type_2": {
-        "title": "New bonus 2",
-        "description": "Add a new random bonus card"
+        "title": "New card 2",
+        "description": "Add a new random card"
       },
       "type_3": {
-        "title": "New two bonus 3",
-        "description": "Add two new random bonus card"
+        "title": "New two card 3",
+        "description": "Add two new random card"
       }
     },
     "flag_random_mine": {

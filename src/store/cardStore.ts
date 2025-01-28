@@ -2,10 +2,10 @@ import {action, makeAutoObservable} from "mobx";
 import {FieldStatus} from "../utils/enum/FieldStatus.ts";
 import {boardStore} from "./boardStore.ts";
 import {gameStore} from "./gameStore.ts";
-    import { BonusCard, getRandomBonus} from "../utils/types/Bonus.ts";
+    import { Card, getRandomCard} from "../utils/types/Card.ts";
 
 
-class BonusStore {
+class CardStore {
     constructor() {
         makeAutoObservable(this);
     }
@@ -51,20 +51,20 @@ class BonusStore {
     }
 
     @action
-    newBonus () {
-        gameStore.addBonus(getRandomBonus());
+    newCard () {
+        gameStore.addCard(getRandomCard());
     }
     @action
-    newTwoBonus () {
-        gameStore.addBonus(getRandomBonus());
-        gameStore.addBonus(getRandomBonus());
+    newTwoCard () {
+        gameStore.addCard(getRandomCard());
+        gameStore.addCard(getRandomCard());
     }
     @action
-    newTreeBonus () {
-        gameStore.addBonus(getRandomBonus());
-        gameStore.addBonus(getRandomBonus());
-        gameStore.addBonus(getRandomBonus());
+    newTreeCard () {
+        gameStore.addCard(getRandomCard());
+        gameStore.addCard(getRandomCard());
+        gameStore.addCard(getRandomCard());
     }
 }
 
-export const bonusStore = new BonusStore();
+export const cardStore = new CardStore();

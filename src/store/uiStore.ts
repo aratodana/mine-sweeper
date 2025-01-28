@@ -3,21 +3,21 @@ import {FieldStatus, getFieldByNumberOfMinesAround} from "../utils/enum/FieldSta
 import randomInteger from "../utils/functions/randomInteger.ts";
 import {GameStatus} from "../utils/enum/GameStatus.ts";
 import { Field } from "../utils/types/Field.ts";
-import {BonusCard, getRandomBonus} from "../utils/types/Bonus.ts";
+import {Card, getRandomCard} from "../utils/types/Card.ts";
 import cardViewModal from "../components/modals/CardViewModal.tsx";
 
 
 
 class UiStore {
     @observable
-    cardViewModal: BonusCard | null = null;
+    cardViewModal: Card | null = null;
 
     constructor() {
         makeAutoObservable(this);
     }
 
     @action
-    openCardViewModal =  (card:BonusCard)  => {
+    openCardViewModal =  (card:Card)  => {
         this.cardViewModal = card;
     }
     @action

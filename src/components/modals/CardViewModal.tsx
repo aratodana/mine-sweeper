@@ -17,7 +17,7 @@ import { observer } from "mobx-react-lite";
 import { gameStore } from "../../store/gameStore.ts";
 import {useTranslation} from "react-i18next";
 import {uiStore} from "../../store/uiStore.ts";
-import BonusCardView from "../BonusCardView.tsx";
+import CardView from "../CardView.tsx";
 
 const styles = StyleSheet.create({
     fullAreaView: {
@@ -40,7 +40,7 @@ const DefeatModal = observer(() => {
               <View style={styles.fullAreaView}>
                   <SafeAreaView >
                       <View style={styles.content} >
-                          { uiStore.cardViewModal && <BonusCardView card={uiStore.cardViewModal} onPress={uiStore.closeCardViewModal} /> }
+                          { uiStore.cardViewModal && <CardView card={uiStore.cardViewModal} onPress={uiStore.closeCardViewModal} /> }
                       </View>
                   </SafeAreaView>
               </View>

@@ -1,17 +1,15 @@
 import {action, computed, makeAutoObservable, observable} from "mobx";
 import {boardStore} from "./boardStore.ts";
 import {GameStatus} from "../utils/enum/GameStatus.ts";
-import { BonusCard} from "../utils/types/Bonus.ts";
+import { Card} from "../utils/types/Card.ts";
 import levels from "../config/levels.json"
-import bonusCards from "../config/bonusCards.ts";
-import {bonusStore} from "./bonusStore.ts";
 
 class GameStore {
     @observable
     currentLevel: number = 0;
 
     @observable
-    bonuses: Array<BonusCard> = []
+    cards: Array<Card> = []
 
     @observable
     coins: number = 0;
@@ -31,8 +29,8 @@ class GameStore {
     }
 
     @computed
-    get getBonuses () {
-        return this.bonuses.slice();
+    get getCards () {
+        return this.cards.slice();
     }
 
     @action
@@ -40,7 +38,7 @@ class GameStore {
         this.currentLevel = 0;
         this.coins = 0;
         this.startGameByLevel();
-        this.bonuses = [];
+        this.cards = [];
     }
 
     @action
@@ -49,7 +47,7 @@ class GameStore {
         boardStore.initEmptyBoard(currentLevel.size);
         boardStore.addRandomMines(currentLevel.mine);
         boardStore.calculateNearFields();
-        boardStore.addRandomBonuses(currentLevel.bonus)
+        boardStore.addRandomCards(currentLevel.cards)
         boardStore.addRandomCoins(currentLevel.coins);
     }
 
@@ -60,12 +58,12 @@ class GameStore {
     }
 
     @action
-    collectBonus = (cx: number, cy: number, bonus: BonusCard | null) => {
-        if (!bonus) {
+    collectCard = (cx: number, cy: number, card: Card | null) => {
+        if (!card) {
             return;
         }
-        this.addBonus(bonus);
-        boardStore.removeBonus(cx, cy);
+        this.addCard(card);
+        boardStore.removeCard(cx, cy);
     }
 
 
@@ -79,8 +77,8 @@ class GameStore {
     }
 
     @action
-    addBonus (bonus:BonusCard) {
-        this.bonuses.push(bonus);
+    addCard (card:Card) {
+        this.cards.push(card);
     }
     @action
     addCoin (coins:number) {
@@ -88,22 +86,23 @@ class GameStore {
     }
 
     @action
-    removeBonus (card:BonusCard) {
-        this.bonuses = this.bonuses.filter(bonus => !bonus.equals(card));
+    removeCard (current:Card) {
+        this.cards = this.cards.filter(card => !card.equals(current));
     }
 
     spendCoins(price: number) {
         this.coins -= price;
     }
 
-    useBonusCard (card:BonusCard) {
+    useCard (card:Card) {
         if (this.coins < card.price) {
             console.warn('Not enough coins');
             return;
         }
+        debugger;
         this.spendCoins(card.price);
         card.callback()
-        this.removeBonus(card);
+        this.removeCard(card);
     }
 }
 

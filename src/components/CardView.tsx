@@ -7,7 +7,7 @@
 
 import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
-import {BonusCard} from "../utils/types/Bonus.ts";
+import {Card} from "../utils/types/Card.ts";
 import {useTranslation} from "react-i18next";
 import {gameStore} from "../store/gameStore.ts";
 
@@ -20,11 +20,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         overflow: 'hidden',
     },
-    bonusTitle: {
+    cardTitle: {
         fontSize: 18,
         padding: 4,
     },
-    bonusDescription: {
+    cardDescription: {
         bottom: 0,
         backgroundColor: '#d5d5d5',
         padding: 4,
@@ -33,24 +33,24 @@ const styles = StyleSheet.create({
 });
 
 interface Props {
-    card: BonusCard,
+    card: Card,
     onPress?: (() => void),
     onLongPress?: (() => void)
 }
 
 
-const BonusCardView = ({ card, onPress = () => {}, onLongPress = () => {} }: Props): JSX.Element => {
+const CardView = ({ card, onPress = () => {}, onLongPress = () => {} }: Props): JSX.Element => {
     const { t } = useTranslation();
 
     return  <TouchableOpacity style={styles.card} onPress={onPress} onLongPress={onLongPress}>
-                <Text style={styles.bonusTitle}>
+                <Text style={styles.cardTitle}>
                     { t(card.title) }
                 </Text>
-                <Text style={styles.bonusDescription}>
+                <Text style={styles.cardDescription}>
                     { t(card.description) } ({ card.price })
                 </Text>
             </TouchableOpacity>
 }
 
 
-export default BonusCardView;
+export default CardView;

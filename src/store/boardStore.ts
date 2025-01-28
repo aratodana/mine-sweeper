@@ -3,7 +3,7 @@ import {FieldStatus, getFieldByNumberOfMinesAround} from "../utils/enum/FieldSta
 import randomInteger from "../utils/functions/randomInteger.ts";
 import {GameStatus} from "../utils/enum/GameStatus.ts";
 import { Field } from "../utils/types/Field.ts";
-import {getRandomBonus} from "../utils/types/Bonus.ts";
+import {getRandomCard} from "../utils/types/Card.ts";
 
 
 
@@ -45,18 +45,18 @@ class BoardStore {
     }
 
     @action
-    addRandomBonuses = (numberOfBonuses: number) => {
+    addRandomCards = (numberOfCards: number) => {
         if (!this.board) {
             console.warn('Call addRandomMines without board');
             return;
         }
 
         let i = 0;
-        while (i < numberOfBonuses) {
+        while (i < numberOfCards) {
             const x = randomInteger(0, this.board.length-1)
             const y = randomInteger(0, this.board.length-1)
             if (this.board[x][y].value !== FieldStatus.MINE) {
-                this.board[x][y].bonus = getRandomBonus();
+                this.board[x][y].card = getRandomCard();
                 i++;
             }
         }
@@ -85,11 +85,11 @@ class BoardStore {
     }
 
     @action
-    removeBonus = (cx: number, cy: number) => {
+    removeCard = (cx: number, cy: number) => {
         if (!this.board) {
             return;
         }
-        this.board[cx][cy].bonus = null;
+        this.board[cx][cy].card = null;
     }
 
     @action

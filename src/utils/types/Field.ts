@@ -1,6 +1,6 @@
 import {FieldStatus} from "../enum/FieldStatus.ts";
 import {makeAutoObservable, observable} from "mobx";
-import {BonusCard} from "./Bonus.ts";
+import {Card} from "./Card.ts";
 
 class Field {
     @observable
@@ -19,7 +19,7 @@ class Field {
     isFlagged: boolean;
 
     @observable
-    bonus: BonusCard | null;
+    card: Card | null;
 
     @observable
     coins: number | null;
@@ -30,7 +30,7 @@ class Field {
         this.value = value;
         this.isRevealed = isRevealed;
         this.isFlagged = isFlagged;
-        this.bonus = null;
+        this.card = null;
         this.coins = null;
         makeAutoObservable(this);
     }

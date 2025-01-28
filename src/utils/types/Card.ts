@@ -1,7 +1,7 @@
-import bonusCards from '../../config/bonusCards.ts'
+import cardConfig from '../../config/cardConfig.ts'
 import uuid from 'react-native-uuid';
 
-class BonusCard {
+class Card {
     id: string;
     title: string;
     description: string;
@@ -16,11 +16,11 @@ class BonusCard {
         this.callback = callback;
     }
 
-    equals (other:BonusCard):boolean {
+    equals (other:Card):boolean {
         return this.id === other.id;
     }
 
-    similar (other:BonusCard):boolean {
+    similar (other:Card):boolean {
         return this.title === other.title && this.description === other.description && this.price === other.price;
     }
 }
@@ -29,11 +29,11 @@ class BonusCard {
 
 
 // @ts-ignore
-function getRandomBonus (): BonusCard {
-    const probabilityArray = bonusCards.map(card => Array.from({length: card.probability}, () => card)).flat();
+function getRandomCard (): Card {
+    const probabilityArray = cardConfig.map(card => Array.from({length: card.probability}, () => card)).flat();
     const randomIndex = Math.floor(Math.random() * probabilityArray.length);
     const current = probabilityArray[randomIndex];
-    return new BonusCard(current.title, current.description, current.price, current.callback);
+    return new Card(current.title, current.description, current.price, current.callback);
 }
 
-export { getRandomBonus, BonusCard };
+export { getRandomCard, Card };

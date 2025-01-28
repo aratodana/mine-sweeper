@@ -19,7 +19,7 @@ import BoardView from "./components/BoardView.tsx";
 import WinModal from "./components/modals/WinModal.tsx";
 import DefeatModal from "./components/modals/DefeatModal.tsx";
 import LevelMarker from "./components/LevelMarkerView.tsx";
-import BonusListView from "./components/BonusListView.tsx";
+import CardDeckView from "./components/CardDeckView.tsx";
 import CoinMarkerView from "./components/CoinMarkerView.tsx";
 import CardViewModal from "./components/modals/CardViewModal.tsx";
 
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     board: {
         flexBasis: 'auto'
     },
-    bonusList: {
+    deck: {
         flexBasis: 200,
     }
 });
@@ -66,8 +66,8 @@ function App(): React.JSX.Element {
             <View style={styles.board}>
                 <BoardView  />
             </View>
-            <View style={styles.bonusList}>
-                <BonusListView />
+            <View style={styles.deck}>
+                <CardDeckView />
             </View>
         </SafeAreaView>
     );
