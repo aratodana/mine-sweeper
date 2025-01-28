@@ -18,47 +18,45 @@
     }
   },
   "card": {
-    "new_card": {
-      "type_1": {
-        "title": "New card 1",
-        "description": "Add a new random card"
-      },
-      "type_2": {
-        "title": "New card 2",
-        "description": "Add a new random card"
-      },
-      "type_3": {
-        "title": "New two card 3",
-        "description": "Add two new random card"
-      }
-    },
-    "flag_random_mine": {
-      "type_1": {
-        "title": "Flags a random mine 1",
-        "description": "Flags a random mine"
-      },
-      "type_2": {
-        "title": "Flags a random mine 2",
-        "description": "Flags a random mine"
-      },
-      "type_3": {
-        "title": "Flags two random mine 3",
-        "description": "Flags two random mine"
-      }
-    },
-    "reveal_random_field": {
-      "type_1": {
-        "title": "Reveal a random field 1",
-        "description": "Reveal a random field"
-      },
-      "type_2": {
-        "title": "Reveal a random field 2",
-        "description": "Reveal a random field"
-      },
-      "type_3": {
-        "title": "Reveal two random field 3",
-        "description": "Reveal two random field"
-      }
-    }
+    "flame_wave.type_1.title": "Flame Wave",
+    "flame_wave.type_1.description": "Unleashes a wave of fire that burns all enemies in its path.",
+    "healing_light.type_1.title": "Healing Light",
+    "healing_light.type_1.description": "Bathes allies in a warm light, restoring their health.",
+    "stone_spike.type_2.title": "Stone Spike",
+    "stone_spike.type_2.description": "Summons a massive spike from the ground to impale enemies.",
+    "venom_cloud.type_3.title": "Venom Cloud",
+    "venom_cloud.type_3.description": "Releases a poisonous cloud that damages enemies over time.",
+    "arcane_shield.type_1.title": "Arcane Shield",
+    "arcane_shield.type_1.description": "Creates a magical shield that absorbs incoming damage.",
+    "frost_blast.type_1.title": "Frost Blast",
+    "frost_blast.type_1.description": "Unleashes a blast of icy energy, slowing enemies.",
+    "thunder_clap.type_1.title": "Thunder Clap",
+    "thunder_clap.type_1.description": "Calls down a thunderous strike to stun enemies.",
+    "wind_barrier.type_3.title": "Wind Barrier",
+    "wind_barrier.type_3.description": "Summons a barrier of wind that deflects attacks.",
+    "light_arrow.type_1.title": "Light Arrow",
+    "light_arrow.type_1.description": "Fires a radiant arrow that pierces through enemies.",
+    "shadow_strike.type_1.title": "Shadow Strike",
+    "shadow_strike.type_1.description": "Strikes from the shadows to deal massive damage.",
+    "crystal_barrier.type_2.title": "Crystal Barrier",
+    "crystal_barrier.type_2.description": "Creates a barrier of crystal to protect allies.",
+    "phantom_dagger.type_1.title": "Phantom Dagger",
+    "phantom_dagger.type_1.description": "Throws an ethereal dagger that seeks its target.",
+    "blazing_sphere.type_3.title": "Blazing Sphere",
+    "blazing_sphere.type_3.description": "Summons a fiery sphere that explodes on impact.",
+    "mystic_flare.type_1.title": "Mystic Flare",
+    "mystic_flare.type_1.description": "Releases a burst of arcane energy that scorches enemies.",
+    "celestial_hammer.type_1.title": "Celestial Hammer",
+    "celestial_hammer.type_1.description": "Calls forth a hammer from the heavens to crush enemies.",
+    "storm_burst.type_1.title": "Storm Burst",
+    "storm_burst.type_1.description": "Unleashes a burst of storm energy that damages and stuns enemies.",
+    "void_nova.type_2.title": "Void Nova",
+    "void_nova.type_2.description": "Creates a nova of void energy that weakens enemies.",
+    "radiant_blast.type_1.title": "Radiant Blast",
+    "radiant_blast.type_1.description": "Fires a powerful beam of radiant energy at enemies.",
+    "ethereal_wave.type_3.title": "Ethereal Wave",
+    "ethereal_wave.type_3.description": "Sends out a wave of ethereal energy that confuses enemies.",
+    "starfall.type_1.title": "Starfall",
+    "starfall.type_1.description": "Calls down a rain of stars to damage all enemies."
   }
 }
