@@ -1,10 +1,11 @@
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
  *
  * @format
  */
-
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 import {observer} from "mobx-react-lite";
@@ -47,7 +48,10 @@ const FieldView = observer(({fieldData, onReveal, onFlag}: FieldProps) => {
 
     if (fieldData.isRevealed && fieldData.card) {
         return (
-            <TouchableOpacity style={[styles.field, styles.card]} onPress={() => gameStore.collectCard(fieldData.cx, fieldData.cy, fieldData.card)}>
+            <TouchableOpacity style={[styles.field, styles.card]} onPress={() => {
+                ReactNativeHapticFeedback.trigger("impactLight");
+                gameStore.collectCard(fieldData.cx, fieldData.cy, fieldData.card)
+            }}>
                 <Text>🎁</Text>
             </TouchableOpacity>
         )
@@ -55,7 +59,10 @@ const FieldView = observer(({fieldData, onReveal, onFlag}: FieldProps) => {
 
     if (fieldData.isRevealed && fieldData.coins) {
         return (
-            <TouchableOpacity style={[styles.field, styles.card]} onPress={() => gameStore.collectCoins(fieldData.cx, fieldData.cy, fieldData.coins)}>
+            <TouchableOpacity style={[styles.field, styles.card]} onPress={() => {
+                ReactNativeHapticFeedback.trigger("impactLight");
+                gameStore.collectCoins(fieldData.cx, fieldData.cy, fieldData.coins)
+            }}>
                 <Text>💰</Text>
             </TouchableOpacity>
         )
@@ -64,7 +71,6 @@ const FieldView = observer(({fieldData, onReveal, onFlag}: FieldProps) => {
     if (fieldData.isRevealed) {
         return (
             <View style={[styles.field, styles.revealed]}>
-
                 <Text>{fieldData.value === FieldStatus.MINE ? '💣' : (fieldData.value === 0 ? '' : fieldData.value)}</Text>
             </View>
         )
@@ -72,14 +78,24 @@ const FieldView = observer(({fieldData, onReveal, onFlag}: FieldProps) => {
 
     if (fieldData.isFlagged) {
         return (
-            <TouchableOpacity style={[styles.field, styles.flagged]} onLongPress={onFlag}>
+            <TouchableOpacity style={[styles.field, styles.flagged]} onLongPress={() => {
+                ReactNativeHapticFeedback.trigger("soft");
+                onFlag();
+            }}>
                 <Text>🚩</Text>
             </TouchableOpacity>
         )
     }
 
     return (
-        <TouchableOpacity style={[styles.field, styles.unRevealed]} onPress={onReveal} onLongPress={onFlag}>
+        <TouchableOpacity style={[styles.field, styles.unRevealed]} onPress={() => {
+            if (fieldData.value === FieldStatus.MINE) {
+                ReactNativeHapticFeedback.trigger("notificationError");
+            } else {
+                ReactNativeHapticFeedback.trigger("soft");
+            }
+            onReveal()
+        }} onLongPress={onFlag}>
         </TouchableOpacity>
     );
 })

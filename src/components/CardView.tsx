@@ -1,3 +1,5 @@
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -42,7 +44,14 @@ interface Props {
 const CardView = ({ card, onPress = () => {}, onLongPress = () => {} }: Props): JSX.Element => {
     const { t } = useTranslation();
 
-    return  <TouchableOpacity style={styles.card} onPress={onPress} onLongPress={onLongPress}>
+    return  <TouchableOpacity style={styles.card} onPress={() => {
+        if (card.price <= gameStore.coins) {
+            ReactNativeHapticFeedback.trigger("impactLight");
+        } else {
+            ReactNativeHapticFeedback.trigger("notificationError");
+        }
+        onPress()
+    }} onLongPress={onLongPress}>
                 <Text style={styles.cardTitle}>
                     { t(card.title) }
                 </Text>

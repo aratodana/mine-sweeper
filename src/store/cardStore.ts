@@ -20,6 +20,9 @@ class CardStore {
         const mines = fields.filter(field => field.value === FieldStatus.MINE &&  !field.isRevealed && !field.isFlagged);
         const randomIndex = Math.floor(Math.random() * mines.length);
         const randomElement = mines[randomIndex];
+        if (!randomElement) {
+            return;
+        }
         boardStore.setFlag(randomElement.cx, randomElement.cy);
     }
 
