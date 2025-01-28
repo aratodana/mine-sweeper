@@ -24,6 +24,11 @@ class GameStore {
     }
 
     @computed
+    get isFullWin (): boolean {
+        return this.isWin && !levels[this.currentLevel];
+    }
+
+    @computed
     get isDefeat ():boolean {
         return boardStore.boardStatus.includes(GameStatus.DEFEATED);
     }
@@ -44,6 +49,9 @@ class GameStore {
     @action
     startGameByLevel= () => {
         const currentLevel = levels[this.currentLevel];
+        if (!currentLevel) {
+            return;
+        }
         boardStore.initEmptyBoard(currentLevel.size);
         boardStore.addRandomMines(currentLevel.mine);
         boardStore.calculateNearFields();

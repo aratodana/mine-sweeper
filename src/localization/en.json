@@ -8,6 +8,10 @@
       "title": "You won!",
       "level": "Prepare to the next level"
     },
+    "full_win": {
+      "title": "You won!",
+      "level": "No more levels"
+    },
     "defeat": {
       "title": "You defeated",
       "level": "You reached the level of"

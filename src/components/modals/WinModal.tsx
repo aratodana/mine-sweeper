@@ -39,6 +39,26 @@ const styles = StyleSheet.create({
 const WinModal = observer(() => {
     const { t } = useTranslation();
 
+
+    if(gameStore.isFullWin) {
+        return (
+            <Modal visible={gameStore.isWin} transparent={true} animationType="slide">
+                <TouchableWithoutFeedback>
+                    <View style={styles.fullAreaView}>
+                        <SafeAreaView style={styles.content}>
+                            <Text style={styles.mainTitle}>
+                                { t("modal.full_win.title") }
+                            </Text>
+                            <Text>
+                                { t("modal.full_win.level") }
+                            </Text>
+                        </SafeAreaView>
+                    </View>
+                </TouchableWithoutFeedback>
+            </Modal>
+        )
+    }
+
   return (
       <Modal visible={gameStore.isWin} transparent={true} animationType="slide">
           <TouchableWithoutFeedback onPress={gameStore.startNextLevel}>
