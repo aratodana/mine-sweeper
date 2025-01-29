@@ -12,6 +12,7 @@ import {observer} from "mobx-react-lite";
 import {FieldStatus} from "../utils/enum/FieldStatus.ts";
 import {Field} from "../utils/types/Field.ts";
 import {gameStore} from "../store/gameStore.ts";
+import IconView from "./IconView.tsx";
 
 const styles = StyleSheet.create({
     field: {
@@ -52,7 +53,7 @@ const FieldView = observer(({fieldData, onReveal, onFlag}: FieldProps) => {
                 ReactNativeHapticFeedback.trigger("impactLight");
                 gameStore.collectCard(fieldData.cx, fieldData.cy, fieldData.card)
             }}>
-                <Text>🎁</Text>
+                <IconView name={'loot'} size={40} />
             </TouchableOpacity>
         )
     }
@@ -63,7 +64,7 @@ const FieldView = observer(({fieldData, onReveal, onFlag}: FieldProps) => {
                 ReactNativeHapticFeedback.trigger("impactLight");
                 gameStore.collectCoins(fieldData.cx, fieldData.cy, fieldData.coins)
             }}>
-                <Text>💰</Text>
+                <IconView name={'mana'} size={50} />
             </TouchableOpacity>
         )
     }
@@ -82,7 +83,7 @@ const FieldView = observer(({fieldData, onReveal, onFlag}: FieldProps) => {
                 ReactNativeHapticFeedback.trigger("soft");
                 onFlag();
             }}>
-                <Text>🚩</Text>
+                <IconView name={'flag'} size={50} />
             </TouchableOpacity>
         )
     }

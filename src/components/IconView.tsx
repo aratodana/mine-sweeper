@@ -23,7 +23,8 @@ import {Field} from "../utils/types/Field.ts";
 
 const imageList = {
     mana: require('../../assets/icons/mana.png'),
-    mine: require('../../assets/icons/mine.png'),
+    flag: require('../../assets/icons/flag.png'),
+    loot: require('../../assets/icons/loot.png'),
 }
 
 
