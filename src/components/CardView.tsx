@@ -13,6 +13,7 @@ import {Card} from "../utils/types/Card.ts";
 import {useTranslation} from "react-i18next";
 import {gameStore} from "../store/gameStore.ts";
 import CardLevel from "../utils/enum/CardLevel.ts";
+import IconView from "./IconView.tsx";
 
 const colorConfig = [
     {
@@ -61,9 +62,28 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems:'center',
+    },
+    cardDescriptionText: {
         textAlign: 'center',
-        flexWrap: "wrap"
-
+        fontSize: 12
+    },
+    priceWrapper: {
+        backgroundColor: '#171717',
+        flexDirection: 'row',
+        position: 'absolute',
+        left: 0,
+        top: 40,
+        borderBottomRightRadius: 10,
+        borderTopRightRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingRight: 7,
+    },
+    priceWrapperText: {
+        color: 'white',
+        fontSize: 10,
+        verticalAlign: 'middle',
+        textAlign: 'center',
     }
 });
 
@@ -90,9 +110,17 @@ const CardView = ({ card, onPress = () => {}, onLongPress = () => {} }: Props): 
             <Text style={[styles.cardTitle, {color: dominantColor}]}>
                 { t(card.title) }
             </Text>
-            <Text style={[styles.cardDescription, {color: dominantColor}]} numberOfLines={2} ellipsizeMode="tail">
-                { t(card.description) }
-            </Text>
+            <View style={[styles.priceWrapper]}>
+                <IconView name={'mana'} size={17} />
+                <Text style={[styles.priceWrapperText]}>
+                    {card.price}
+                </Text>
+            </View>
+            <View style={[styles.cardDescription]}>
+                <Text style={[styles.cardDescriptionText, {color: dominantColor}]} numberOfLines={3} ellipsizeMode="tail">
+                    { t(card.description) }
+                </Text>
+            </View>
         </ImageBackground>
     </TouchableOpacity>
 }
