@@ -1,10 +1,12 @@
 import {cardStore} from "../store/cardStore.ts";
 import CardLevel from '../utils/enum/CardLevel'
 
+
 export default [
     {
         title: "card.flame_wave.type_1.title",
         description: "card.flame_wave.type_1.description",
+        image: require('../../assets/cards/flame-wave.png'),
         price: 6,
         probability: 2,
         level: CardLevel.MYTHIC,
@@ -13,6 +15,7 @@ export default [
     {
         title: "card.healing_light.type_1.title",
         description: "card.healing_light.type_1.description",
+        image: require('../../assets/cards/healing-light.png'),
         price: 2,
         probability: 9,
         level: CardLevel.COMMON,
@@ -21,6 +24,7 @@ export default [
     {
         title: "card.stone_spike.type_2.title",
         description: "card.stone_spike.type_2.description",
+        image: require('../../assets/cards/stone-spike.png'),
         price: 3,
         probability: 8,
         level: CardLevel.UNIQUE,
@@ -29,6 +33,7 @@ export default [
     {
         title: "card.venom_cloud.type_3.title",
         description: "card.venom_cloud.type_3.description",
+        image: require('../../assets/cards/venom-cloud.png'),
         price: 4,
         probability: 7,
         level: CardLevel.RARE,
@@ -37,6 +42,7 @@ export default [
     {
         title: "card.arcane_shield.type_1.title",
         description: "card.arcane_shield.type_1.description",
+        image: require('../../assets/cards/arcane-shield.png'),
         price: 5,
         probability: 5,
         level: CardLevel.UNIQUE,
@@ -45,6 +51,7 @@ export default [
     {
         title: "card.frost_blast.type_1.title",
         description: "card.frost_blast.type_1.description",
+        image: require('../../assets/cards/frost-blast.png'),
         price: 6,
         probability: 2,
         level: CardLevel.MYTHIC,
@@ -53,6 +60,7 @@ export default [
     {
         title: "card.thunder_clap.type_1.title",
         description: "card.thunder_clap.type_1.description",
+        image: require('../../assets/cards/thunder-clap.png'),
         price: 4,
         probability: 6,
         level: CardLevel.RARE,
@@ -61,6 +69,7 @@ export default [
     {
         title: "card.wind_barrier.type_3.title",
         description: "card.wind_barrier.type_3.description",
+        image: require('../../assets/cards/wind-barrier.png'),
         price: 7,
         probability: 1,
         level: CardLevel.LEGENDARY,
@@ -69,6 +78,7 @@ export default [
     {
         title: "card.light_arrow.type_1.title",
         description: "card.light_arrow.type_1.description",
+        image: require('../../assets/cards/light-arrow.png'),
         price: 3,
         probability: 8,
         level: CardLevel.UNIQUE,
@@ -77,6 +87,7 @@ export default [
     {
         title: "card.shadow_strike.type_1.title",
         description: "card.shadow_strike.type_1.description",
+        image: require('../../assets/cards/shadow-strike.png'),
         price: 5,
         probability: 4,
         level: CardLevel.UNIQUE,
@@ -85,6 +96,7 @@ export default [
     {
         title: "card.crystal_barrier.type_2.title",
         description: "card.crystal_barrier.type_2.description",
+        image: require('../../assets/cards/crystal-barrier.png'),
         price: 4,
         probability: 5,
         level: CardLevel.RARE,
@@ -93,6 +105,7 @@ export default [
     {
         title: "card.phantom_dagger.type_1.title",
         description: "card.phantom_dagger.type_1.description",
+        image: require('../../assets/cards/phantom-dagger.png'),
         price: 5,
         probability: 5,
         level: CardLevel.UNIQUE,
@@ -101,6 +114,7 @@ export default [
     {
         title: "card.blazing_sphere.type_3.title",
         description: "card.blazing_sphere.type_3.description",
+        image: require('../../assets/cards/blazing-sphere.png'),
         price: 7,
         probability: 1,
         level: CardLevel.LEGENDARY,
@@ -109,6 +123,7 @@ export default [
     {
         title: "card.mystic_flare.type_1.title",
         description: "card.mystic_flare.type_1.description",
+        image: require('../../assets/cards/mystic-flare.png'),
         price: 3,
         probability: 8,
         level: CardLevel.UNIQUE,
@@ -117,6 +132,7 @@ export default [
     {
         title: "card.celestial_hammer.type_1.title",
         description: "card.celestial_hammer.type_1.description",
+        image: require('../../assets/cards/celestial-hammer.png'),
         price: 4,
         probability: 6,
         level: CardLevel.RARE,
@@ -125,6 +141,7 @@ export default [
     {
         title: "card.storm_burst.type_1.title",
         description: "card.storm_burst.type_1.description",
+        image: require('../../assets/cards/storm-burst.png'),
         price: 5,
         probability: 5,
         level: CardLevel.UNIQUE,
@@ -133,6 +150,7 @@ export default [
     {
         title: "card.void_nova.type_2.title",
         description: "card.void_nova.type_2.description",
+        image: require('../../assets/cards/void-nova.png'),
         price: 4,
         probability: 6,
         level: CardLevel.RARE,
@@ -141,6 +159,7 @@ export default [
     {
         title: "card.radiant_blast.type_1.title",
         description: "card.radiant_blast.type_1.description",
+        image: require('../../assets/cards/radiant-blast.png'),
         price: 6,
         probability: 2,
         level: CardLevel.MYTHIC,
@@ -149,6 +168,7 @@ export default [
     {
         title: "card.ethereal_wave.type_3.title",
         description: "card.ethereal_wave.type_3.description",
+        image: require('../../assets/cards/ethereal-wave.png'),
         price: 7,
         probability: 1,
         level: CardLevel.LEGENDARY,
@@ -157,6 +177,7 @@ export default [
     {
         title: "card.starfall.type_1.title",
         description: "card.starfall.type_1.description",
+        image: require('../../assets/cards/starfall.png'),
         price: 5,
         probability: 4,
         level: CardLevel.UNIQUE,

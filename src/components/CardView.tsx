@@ -52,7 +52,7 @@ const CardView = ({ card, onPress = () => {}, onLongPress = () => {} }: Props): 
         }
         onPress()
     }} onLongPress={onLongPress}>
-        <ImageBackground style={styles.card} source={require('../../assets/cards/celestial-hammer.png')}>
+        <ImageBackground style={styles.card} source={card.image}>
             <Text style={styles.cardTitle}>
                 { t(card.title) }
             </Text>
