@@ -22,7 +22,10 @@ import '../i18n.ts'
 const styles = StyleSheet.create({
     container: {
 
-    }
+    },
+    containerText: {
+        color: '#cdcdcd',
+    },
 });
 
 
@@ -31,7 +34,7 @@ const Field = observer(() => {
 
   return (
       <View style={styles.container}>
-          <Text>
+          <Text style={styles.containerText}>
               {t("header.level")}: { gameStore.currentLevel + 1 }
           </Text>
       </View>

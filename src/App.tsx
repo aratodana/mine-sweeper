@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     },
     header: {
         flexBasis: 50,
-        backgroundColor: '#a7a7a7',
+        backgroundColor: '#171717',
         borderRadius: 4,
         height: '100%',
         justifyContent: 'space-between',
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         marginLeft: 4,
         marginRight: 4,
         flexDirection: 'row',
-        padding: 4,
+        padding: 10,
     },
     board: {
         flexBasis: 'auto'
