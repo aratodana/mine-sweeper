@@ -16,5 +16,125 @@
     "mine": 3,
     "cards": 3,
     "coins": 3
+  },
+  {
+    "size": 6,
+    "mine": 4,
+    "cards": 3,
+    "coins": 3
+  },
+  {
+    "size": 6,
+    "mine": 5,
+    "cards": 3,
+    "coins": 3
+  },
+  {
+    "size": 6,
+    "mine": 6,
+    "cards": 3,
+    "coins": 3
+  },
+  {
+    "size": 7,
+    "mine": 7,
+    "cards": 3,
+    "coins": 3
+  },
+  {
+    "size": 7,
+    "mine": 8,
+    "cards": 3,
+    "coins": 3
+  },
+  {
+    "size": 7,
+    "mine": 9,
+    "cards": 3,
+    "coins": 3
+  },
+  {
+    "size": 8,
+    "mine": 10,
+    "cards": 3,
+    "coins": 3
+  },
+  {
+    "size": 8,
+    "mine": 11,
+    "cards": 3,
+    "coins": 3
+  },
+  {
+    "size": 8,
+    "mine": 12,
+    "cards": 3,
+    "coins": 3
+  },
+  {
+    "size": 9,
+    "mine": 13,
+    "cards": 3,
+    "coins": 3
+  },
+  {
+    "size": 9,
+    "mine": 14,
+    "cards": 3,
+    "coins": 3
+  },
+  {
+    "size": 9,
+    "mine": 15,
+    "cards": 3,
+    "coins": 3
+  },
+  {
+    "size": 10,
+    "mine": 16,
+    "cards": 3,
+    "coins": 3
+  },
+  {
+    "size": 10,
+    "mine": 17,
+    "cards": 3,
+    "coins": 3
+  },
+  {
+    "size": 10,
+    "mine": 18,
+    "cards": 3,
+    "coins": 3
+  },
+  {
+    "size": 11,
+    "mine": 19,
+    "cards": 3,
+    "coins": 3
+  },
+  {
+    "size": 11,
+    "mine": 20,
+    "cards": 3,
+    "coins": 3
+  },
+  {
+    "size": 11,
+    "mine": 21,
+    "cards": 3,
+    "coins": 3
+  },
+  {
+    "size": 12,
+    "mine": 22,
+    "cards": 3,
+    "coins": 3
+  },
+  {
+    "size": 20,
+    "mine": 100,
+    "cards": 3,
+    "coins": 3
   }
 ]
