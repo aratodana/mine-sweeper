@@ -8,6 +8,7 @@
 import React, {useEffect} from 'react';
 import type {PropsWithChildren} from 'react';
 import {
+    ImageBackground,
     SafeAreaView, StyleSheet,
     Text,
     useColorScheme,
@@ -27,6 +28,9 @@ const styles = StyleSheet.create({
     appContainer: {
         justifyContent: 'space-between',
         gap: 8
+    },
+    imageWrapper: {
+        height: "100%"
     },
     header: {
         flexBasis: 50,
@@ -55,21 +59,24 @@ function App(): React.JSX.Element {
    });
 
     return (
-        <SafeAreaView style={styles.appContainer}>
-            <CardViewModal />
-            <WinModal />
-            <DefeatModal />
-            <View style={styles.header}>
-                <LevelMarker />
-                <CoinMarkerView />
-            </View>
-            <View style={styles.board}>
-                <BoardView  />
-            </View>
-            <View style={styles.deck}>
-                <CardDeckView />
-            </View>
-        </SafeAreaView>
+        <ImageBackground style={styles.imageWrapper} source={require('../assets/background/game.png')}>
+            <SafeAreaView style={styles.appContainer}>
+                <CardViewModal />
+                <WinModal />
+                <DefeatModal />
+                <View style={styles.header}>
+                    <LevelMarker />
+                    <CoinMarkerView />
+                </View>
+                <View style={styles.board}>
+                    <BoardView  />
+                </View>
+                <View style={styles.deck}>
+                    <CardDeckView />
+                </View>
+
+            </SafeAreaView>
+        </ImageBackground>
     );
 }
 

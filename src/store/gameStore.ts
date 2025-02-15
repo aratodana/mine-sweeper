@@ -25,7 +25,7 @@ class GameStore {
 
     @computed
     get isFullWin (): boolean {
-        return this.isWin && !levels[this.currentLevel];
+        return this.isWin && !levels[this.currentLevel + 1];
     }
 
     @computed

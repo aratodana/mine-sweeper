@@ -11,7 +11,7 @@ import {
     Text,
     View,
     Modal,
-    SafeAreaView, TouchableWithoutFeedback,
+    SafeAreaView, TouchableWithoutFeedback, ImageBackground,
 } from 'react-native';
 import { observer } from "mobx-react-lite";
 
@@ -23,56 +23,50 @@ const styles = StyleSheet.create({
         backgroundColor: '#b3b3b3',
     },
     content: {
-        justifyContent: 'center',
+        top: 100,
         alignItems: 'center',
         height: '100%',
     },
     mainTitle: {
-        fontSize: 20,
+        fontSize: 30,
+        color: 'white',
+        textAlign: 'center',
+    },
+    mainText: {
+        color: 'white',
+        textAlign: 'center',
     },
     button: {
         backgroundColor: 'blue',
         fontSize: 16,
+    },
+    titleContainer: {
+        backgroundColor: '#171717',
+        padding: 20,
+        borderRadius: 10,
     }
 });
+
 
 const WinModal = observer(() => {
     const { t } = useTranslation();
 
-
-    if(gameStore.isFullWin) {
-        return (
-            <Modal visible={gameStore.isWin} transparent={true} animationType="slide">
-                <TouchableWithoutFeedback>
-                    <View style={styles.fullAreaView}>
-                        <SafeAreaView style={styles.content}>
-                            <Text style={styles.mainTitle}>
-                                { t("modal.full_win.title") }
-                            </Text>
-                            <Text>
-                                { t("modal.full_win.level") }
-                            </Text>
-                        </SafeAreaView>
-                    </View>
-                </TouchableWithoutFeedback>
-            </Modal>
-        )
-    }
-
   return (
       <Modal visible={gameStore.isWin} transparent={true} animationType="slide">
-          <TouchableWithoutFeedback onPress={gameStore.startNextLevel}>
-              <View style={styles.fullAreaView}>
+          <ImageBackground style={styles.fullAreaView} source={require('../../../assets/background/succes.png')}>
+                  <TouchableWithoutFeedback onPress={gameStore.isFullWin ? gameStore.restartGame : gameStore.startNextLevel}>
                   <SafeAreaView style={styles.content}>
-                      <Text style={styles.mainTitle}>
-                          { t("modal.win.title") }
-                      </Text>
-                      <Text>
-                          { t("modal.win.level") } {gameStore.currentLevel + 2}
-                      </Text>
+                      <View style={styles.titleContainer}>
+                          <Text style={styles.mainTitle}>
+                              {gameStore.isFullWin ? t("modal.win.title") : t("modal.full_win.title") }
+                          </Text>
+                          <Text style={styles.mainText}>
+                              { gameStore.isFullWin ? t("modal.full_win.level") :`${ t("modal.win.level") } ${ gameStore.currentLevel + 2 }`  }
+                          </Text>
+                      </View>
                   </SafeAreaView>
-              </View>
-          </TouchableWithoutFeedback>
+                  </TouchableWithoutFeedback>
+          </ImageBackground>
       </Modal>
   );
 })
