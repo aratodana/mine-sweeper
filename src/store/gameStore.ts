@@ -1,7 +1,8 @@
 import {action, computed, makeAutoObservable, observable} from "mobx";
 import {boardStore} from "./boardStore.ts";
 import {GameStatus} from "../utils/enum/GameStatus.ts";
-import { Card} from "../utils/types/Card.ts";
+import { Card, Action} from "../utils/types/Card.ts";
+import {cardStore} from "../store/cardStore.ts";
 import levels from "../config/levels.json"
 
 class GameStore {
@@ -108,8 +109,30 @@ class GameStore {
             return;
         }
         this.spendCoins(card.price);
-        card.callback()
+        this.runActions(card.actions);
         this.removeCard(card);
+    }
+    runActions(actions:Action[]) {
+        actions.forEach(action => {this.runAction(action);});
+    }
+    runAction (action:Action) {
+        const cardActionMap = {
+            reveal: cardStore.revealRandomField,
+            flag: cardStore.flagRandomMine,
+            addCard: cardStore.newCard,
+            addCoin: cardStore.addCoin,
+            addLife:  cardStore.addLife,
+            default: () => { console.warn(`No action found ${action.key}`)}
+        }
+
+        const safeKey = action.key as keyof typeof cardActionMap;
+        const actionFunction = cardActionMap[safeKey]
+
+        for (let i = 0; i < action.value; i++) {
+            actionFunction();
+        }
+
+
     }
 }
 

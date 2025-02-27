@@ -27,12 +27,6 @@ class CardStore {
     }
 
     @action
-    flagTwoRandomMine () {
-        this.flagRandomMine();
-        this.flagRandomMine();
-    }
-
-    @action
     revealRandomField () {
         if (!boardStore.board) {
             console.warn('No board while calling flagRandomMine');
@@ -48,25 +42,19 @@ class CardStore {
         boardStore.reveal(randomElement.cx, randomElement.cy);
     }
 
-    revealTwoRandomField () {
-        this.revealRandomField();
-        this.revealRandomField();
-    }
-
     @action
     newCard () {
         gameStore.addCard(getRandomCard());
     }
+
     @action
-    newTwoCard () {
-        gameStore.addCard(getRandomCard());
-        gameStore.addCard(getRandomCard());
+    addCoin () {
+        console.log('TODO');
     }
+
     @action
-    newTreeCard () {
-        gameStore.addCard(getRandomCard());
-        gameStore.addCard(getRandomCard());
-        gameStore.addCard(getRandomCard());
+    addLife () {
+        console.log('TODO');
     }
 }
 
