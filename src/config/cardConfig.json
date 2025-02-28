@@ -1,26 +1,13 @@
 [
   {
-    "title": "card.flame_wave.title",
-    "description": "card.flame_wave.description",
-    "image": "flame-wave",
-    "price": 6,
-    "probability": 2,
-    "level": "MYTHIC",
-    "actions": {
-      "reveal": 3,
-      "flag": 2,
-      "addCoin": 2
-    }
-  },
-  {
     "title": "card.healing_light.title",
     "description": "card.healing_light.description",
     "image": "healing-light",
     "price": 3,
-    "probability": 8,
+    "probability": 9,
     "level": "COMMON",
     "actions": {
-      "addLife": 2
+      "addLife": 3
     }
   },
   {
@@ -28,7 +15,7 @@
     "description": "card.stone_spike.description",
     "image": "stone-spike",
     "price": 5,
-    "probability": 4,
+    "probability": 6,
     "level": "UNIQUE",
     "actions": {
       "reveal": 2,
@@ -39,12 +26,12 @@
     "title": "card.venom_cloud.title",
     "description": "card.venom_cloud.description",
     "image": "venom-cloud",
-    "price": 4,
+    "price": 7,
     "probability": 5,
     "level": "RARE",
     "actions": {
-      "reveal": 2,
-      "addCoin": 1
+      "addCoin": 2,
+      "addLife": 2
     }
   },
   {
@@ -52,60 +39,180 @@
     "description": "card.arcane_shield.description",
     "image": "arcane-shield",
     "price": 5,
-    "probability": 3,
+    "probability": 6,
     "level": "UNIQUE",
     "actions": {
-      "addLife": 1,
-      "addCoin": 2
+      "reveal": 2,
+      "flag": 2
     }
   },
   {
     "title": "card.frost_blast.title",
     "description": "card.frost_blast.description",
     "image": "frost-blast",
-    "price": 6,
+    "price": 11,
     "probability": 2,
     "level": "MYTHIC",
     "actions": {
-      "reveal": 4,
-      "flag": 3
+      "reveal": 3,
+      "flag": 2,
+      "addCoin": 3,
+      "addLife": 4
     }
   },
   {
     "title": "card.thunder_clap.title",
     "description": "card.thunder_clap.description",
     "image": "thunder-clap",
-    "price": 5,
-    "probability": 4,
+    "price": 7,
+    "probability": 5,
     "level": "RARE",
     "actions": {
-      "reveal": 3,
-      "addCoin": 1
+      "addCoin": 3
     }
   },
   {
     "title": "card.wind_barrier.title",
     "description": "card.wind_barrier.description",
     "image": "wind-barrier",
-    "price": 6,
-    "probability": 2,
+    "price": 9,
+    "probability": 3,
     "level": "LEGENDARY",
     "actions": {
-      "addLife": 3,
+      "reveal": 3,
+      "addLife": 3
+    }
+  },
+  {
+    "title": "card.light_arrow.title",
+    "description": "card.light_arrow.description",
+    "image": "light-arrow",
+    "price": 5,
+    "probability": 6,
+    "level": "UNIQUE",
+    "actions": {
+      "flag": 2
+    }
+  },
+  {
+    "title": "card.shadow_strike.title",
+    "description": "card.shadow_strike.description",
+    "image": "shadow-strike",
+    "price": 5,
+    "probability": 6,
+    "level": "UNIQUE",
+    "actions": {
+      "reveal": 2
+    }
+  },
+  {
+    "title": "card.crystal_barrier.title",
+    "description": "card.crystal_barrier.description",
+    "image": "crystal-barrier",
+    "price": 7,
+    "probability": 5,
+    "level": "RARE",
+    "actions": {
+      "addLife": 2
+    }
+  },
+  {
+    "title": "card.phantom_dagger.title",
+    "description": "card.phantom_dagger.description",
+    "image": "phantom-dagger",
+    "price": 5,
+    "probability": 6,
+    "level": "UNIQUE",
+    "actions": {
+      "reveal": 2,
+      "flag": 1
+    }
+  },
+  {
+    "title": "card.blazing_sphere.title",
+    "description": "card.blazing_sphere.description",
+    "image": "blazing-sphere",
+    "price": 9,
+    "probability": 3,
+    "level": "LEGENDARY",
+    "actions": {
+      "reveal": 3,
       "addCoin": 2
+    }
+  },
+  {
+    "title": "card.mystic_flare.title",
+    "description": "card.mystic_flare.description",
+    "image": "mystic-flare",
+    "price": 5,
+    "probability": 6,
+    "level": "UNIQUE",
+    "actions": {
+      "flag": 2,
+      "addLife": 2
+    }
+  },
+  {
+    "title": "card.celestial_hammer.title",
+    "description": "card.celestial_hammer.description",
+    "image": "celestial-hammer",
+    "price": 7,
+    "probability": 5,
+    "level": "RARE",
+    "actions": {
+      "addCoin": 3,
+      "addLife": 1
+    }
+  },
+  {
+    "title": "card.storm_burst.title",
+    "description": "card.storm_burst.description",
+    "image": "storm-burst",
+    "price": 5,
+    "probability": 6,
+    "level": "UNIQUE",
+    "actions": {
+      "reveal": 2,
+      "flag": 2
+    }
+  },
+  {
+    "title": "card.void_nova.title",
+    "description": "card.void_nova.description",
+    "image": "void-nova",
+    "price": 7,
+    "probability": 5,
+    "level": "RARE",
+    "actions": {
+      "addCoin": 2,
+      "addLife": 2
+    }
+  },
+  {
+    "title": "card.radiant_blast.title",
+    "description": "card.radiant_blast.description",
+    "image": "radiant-blast",
+    "price": 11,
+    "probability": 2,
+    "level": "MYTHIC",
+    "actions": {
+      "reveal": 3,
+      "flag": 2,
+      "addCoin": 3,
+      "addLife": 4
     }
   },
   {
     "title": "card.ethereal_wave.title",
     "description": "card.ethereal_wave.description",
     "image": "ethereal-wave",
-    "price": 6,
-    "probability": 2,
+    "price": 9,
+    "probability": 3,
     "level": "LEGENDARY",
     "actions": {
       "reveal": 3,
-      "flag": 2,
-      "addLife": 1
+      "flag": 1,
+      "addCoin": 2
     }
   },
   {
@@ -113,11 +220,22 @@
     "description": "card.starfall.description",
     "image": "starfall",
     "price": 5,
-    "probability": 3,
+    "probability": 6,
     "level": "UNIQUE",
     "actions": {
-      "reveal": 4,
-      "addCoin": 1
+      "reveal": 2
+    }
+  },
+  {
+    "title": "card.venom_cloud_variant.title",
+    "description": "card.venom_cloud_variant.description",
+    "image": "venom-cloud",
+    "price": 7,
+    "probability": 5,
+    "level": "RARE",
+    "actions": {
+      "addCoin": 2,
+      "addLife": 2
     }
   }
 ]

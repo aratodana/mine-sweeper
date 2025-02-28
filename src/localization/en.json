@@ -18,45 +18,64 @@
     }
   },
   "card": {
-    "flame_wave.type_1.title": "Flame Wave",
-    "flame_wave.type_1.description": "Unleashes a wave of fire that burns all enemies in its path.",
-    "healing_light.type_1.title": "Healing Light",
-    "healing_light.type_1.description": "Bathes allies in a warm light, restoring their health.",
-    "stone_spike.type_2.title": "Stone Spike",
-    "stone_spike.type_2.description": "Summons a massive spike from the ground to impale enemies.",
-    "venom_cloud.type_3.title": "Venom Cloud",
-    "venom_cloud.type_3.description": "Releases a poisonous cloud that damages enemies over time.",
-    "arcane_shield.type_1.title": "Arcane Shield",
-    "arcane_shield.type_1.description": "Creates a magical shield that absorbs incoming damage.",
-    "frost_blast.type_1.title": "Frost Blast",
-    "frost_blast.type_1.description": "Unleashes a blast of icy energy, slowing enemies.",
-    "thunder_clap.type_1.title": "Thunder Clap",
-    "thunder_clap.type_1.description": "Calls down a thunderous strike to stun enemies.",
-    "wind_barrier.type_3.title": "Wind Barrier",
-    "wind_barrier.type_3.description": "Summons a barrier of wind that deflects attacks.",
-    "light_arrow.type_1.title": "Light Arrow",
-    "light_arrow.type_1.description": "Fires a radiant arrow that pierces through enemies.",
-    "shadow_strike.type_1.title": "Shadow Strike",
-    "shadow_strike.type_1.description": "Strikes from the shadows to deal massive damage.",
-    "crystal_barrier.type_2.title": "Crystal Barrier",
-    "crystal_barrier.type_2.description": "Creates a barrier of crystal to protect allies.",
-    "phantom_dagger.type_1.title": "Phantom Dagger",
-    "phantom_dagger.type_1.description": "Throws an ethereal dagger that seeks its target.",
-    "blazing_sphere.type_3.title": "Blazing Sphere",
-    "blazing_sphere.type_3.description": "Summons a fiery sphere that explodes on impact.",
-    "mystic_flare.type_1.title": "Mystic Flare",
-    "mystic_flare.type_1.description": "Releases a burst of arcane energy that scorches enemies.",
-    "celestial_hammer.type_1.title": "Celestial Hammer",
-    "celestial_hammer.type_1.description": "Calls forth a hammer from the heavens to crush enemies.",
-    "storm_burst.type_1.title": "Storm Burst",
-    "storm_burst.type_1.description": "Unleashes a burst of storm energy that damages and stuns enemies.",
-    "void_nova.type_2.title": "Void Nova",
-    "void_nova.type_2.description": "Creates a nova of void energy that weakens enemies.",
-    "radiant_blast.type_1.title": "Radiant Blast",
-    "radiant_blast.type_1.description": "Fires a powerful beam of radiant energy at enemies.",
-    "ethereal_wave.type_3.title": "Ethereal Wave",
-    "ethereal_wave.type_3.description": "Sends out a wave of ethereal energy that confuses enemies.",
-    "starfall.type_1.title": "Starfall",
-    "starfall.type_1.description": "Calls down a rain of stars to damage all enemies."
+    "healing_light.title": "Healing Light",
+    "healing_light.description": "Radiant light grants new life",
+
+    "stone_spike.title": "Stone Spike",
+    "stone_spike.description": "Sharp stone strike awakens power",
+
+    "venom_cloud.title": "Venom Cloud",
+    "venom_cloud.description": "Toxic cloud delivers deadly poison",
+
+    "arcane_shield.title": "Arcane Shield",
+    "arcane_shield.description": "Mystic shield offers strong defense",
+
+    "frost_blast.title": "Frost Blast",
+    "frost_blast.description": "Icy explosion freezes deep wounds",
+
+    "thunder_clap.title": "Thunder Clap",
+    "thunder_clap.description": "Lightning strike stuns with fury",
+
+    "wind_barrier.title": "Wind Barrier",
+    "wind_barrier.description": "Mighty wind creates protective shield",
+
+    "light_arrow.title": "Light Arrow",
+    "light_arrow.description": "Swift arrow pierces with brilliance",
+
+    "shadow_strike.title": "Shadow Strike",
+    "shadow_strike.description": "Hidden force launches sudden attack",
+
+    "crystal_barrier.title": "Crystal Barrier",
+    "crystal_barrier.description": "Pure crystal grants solid defense",
+
+    "phantom_dagger.title": "Phantom Dagger",
+    "phantom_dagger.description": "Swift dagger performs secret moves",
+
+    "blazing_sphere.title": "Blazing Sphere",
+    "blazing_sphere.description": "Fiery orb erupts with energy",
+
+    "mystic_flare.title": "Mystic Flare",
+    "mystic_flare.description": "Mystic burst unveils hidden magic",
+
+    "celestial_hammer.title": "Celestial Hammer",
+    "celestial_hammer.description": "Heavenly strikes deliver divine power",
+
+    "storm_burst.title": "Storm Burst",
+    "storm_burst.description": "Sudden burst releases storm energy",
+
+    "void_nova.title": "Void Nova",
+    "void_nova.description": "Cosmic force disrupts space order",
+
+    "radiant_blast.title": "Radiant Blast",
+    "radiant_blast.description": "Bright explosion scorches enemy swiftly",
+
+    "ethereal_wave.title": "Ethereal Wave",
+    "ethereal_wave.description": "Mystic wave casts enchanting spell",
+
+    "starfall.title": "Starfall",
+    "starfall.description": "Celestial stars cascade in brilliance",
+
+    "venom_cloud_variant.title": "Venom Cloud Variant",
+    "venom_cloud_variant.description": "Toxic cloud intensifies deadly poison"
   }
 }
