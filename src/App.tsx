@@ -23,6 +23,7 @@ import LevelMarker from "./components/LevelMarkerView.tsx";
 import CardDeckView from "./components/CardDeckView.tsx";
 import CoinMarkerView from "./components/CoinMarkerView.tsx";
 import CardViewModal from "./components/modals/CardViewModal.tsx";
+import LifeBarView from "./components/LifeBarView.tsx";
 
 const styles = StyleSheet.create({
     appContainer: {
@@ -66,6 +67,7 @@ function App(): React.JSX.Element {
                 <DefeatModal />
                 <View style={styles.header}>
                     <LevelMarker />
+                    <LifeBarView />
                     <CoinMarkerView />
                 </View>
                 <View style={styles.board}>

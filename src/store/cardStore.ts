@@ -54,7 +54,7 @@ class CardStore {
 
     @action
     addLife () {
-        console.log('TODO');
+        gameStore.addLife(1);
     }
 }
 

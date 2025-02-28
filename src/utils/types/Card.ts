@@ -38,6 +38,7 @@ class Card {
         this.id = uuid.v4();
         this.title = config.title;
         this.description = config.description;
+        // @ts-ignore
         this.image = images?.[config.image];
         this.price = config.price;
         this.level = config.level as CardLevel;

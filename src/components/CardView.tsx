@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         position: 'absolute',
         left: 0,
-        top: 40,
+        top: 60,
         borderBottomRightRadius: 10,
         borderTopRightRadius: 10,
         alignItems: 'center',
@@ -84,7 +84,21 @@ const styles = StyleSheet.create({
         fontSize: 10,
         verticalAlign: 'middle',
         textAlign: 'center',
-    }
+    },
+    actionWrapper: {
+        backgroundColor: '#171717',
+        position: 'absolute',
+        right: 0,
+        top: 60,
+        borderBottomLeftRadius: 10,
+        borderTopLeftRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingRight: 7,
+    },
+    actionWrapperItem: {
+        flexDirection: 'row',
+    },
 });
 
 interface Props {
@@ -93,10 +107,25 @@ interface Props {
     onLongPress?: (() => void)
 }
 
+const actionItemMap = {
+    addLife: 'life',
+    reveal: 'reveal',
+    flag: 'flag',
+    addCoin: 'mana'
+}
+
 
 const CardView = ({ card, onPress = () => {}, onLongPress = () => {} }: Props): JSX.Element => {
     const { t } = useTranslation();
     const dominantColor = colorConfig.find(item => item.level === card.level)?.color || 'white';
+
+    const actions = card.actions.map((item, i) => {
+        const safeKey = item.key as keyof typeof actionItemMap;
+        return {
+            icon: actionItemMap[safeKey],
+            text: item.value
+        }
+    })
 
     return  <TouchableOpacity  onPress={() => {
         if (card.price <= gameStore.coins) {
@@ -115,6 +144,15 @@ const CardView = ({ card, onPress = () => {}, onLongPress = () => {} }: Props): 
                 <Text style={[styles.priceWrapperText]}>
                     {card.price}
                 </Text>
+            </View>
+            <View style={[styles.actionWrapper]}>
+                {actions.map(action =>
+                    <View style={[styles.actionWrapperItem]}>
+                        <IconView name={action.icon} size={17} />
+                        <Text style={[styles.priceWrapperText]}>
+                            {action.text}
+                        </Text>
+                    </View>)}
             </View>
             <View style={[styles.cardDescription]}>
                 <Text style={[styles.cardDescriptionText, {color: dominantColor}]} numberOfLines={3} ellipsizeMode="tail">

@@ -25,6 +25,9 @@ const imageList = {
     mana: require('../../assets/icons/mana.png'),
     flag: require('../../assets/icons/flag.png'),
     loot: require('../../assets/icons/loot.png'),
+    life: require('../../assets/icons/life.png'),
+    lostLife: require('../../assets/icons/lost-life.png'),
+    reveal: require('../../assets/icons/reveal.png'),
 }
 
 

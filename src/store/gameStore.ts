@@ -15,6 +15,9 @@ class GameStore {
     @observable
     coins: number = 0;
 
+    @observable
+    life: number = 3;
+
     constructor() {
         makeAutoObservable(this);
     }
@@ -40,9 +43,23 @@ class GameStore {
     }
 
     @action
+    addLife (payload: number) {
+        if (this.life + payload > 5) {
+            return;
+        }
+        this.life += payload;
+    }
+
+    @action
+    removeLife (payload: number) {
+        this.life -= payload;
+    }
+
+    @action
     restartGame = ()=> {
         this.currentLevel = 0;
         this.coins = 0;
+        this.life = 3;
         this.startGameByLevel();
         this.cards = [];
     }
