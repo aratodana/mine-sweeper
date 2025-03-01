@@ -33,9 +33,9 @@ class GameStore {
         }
     }
     @action
-    importState = (payload: GameStoreExportState)=> {
+    importState = (payload: GameStoreExportState) => {
         this.currentLevel = payload.currentLevel;
-        this.cards = payload.cards;
+        this.cards = payload.cards as Array<Card>;
         this.coins = payload.coins;
         this.life = payload.life;
     }
@@ -131,7 +131,7 @@ class GameStore {
 
     @action
     removeCard (current:Card) {
-        this.cards = this.cards.filter(card => !card.equals(current));
+        this.cards = this.cards.filter(card => card.id !== current.id);
     }
 
     spendCoins(price: number) {

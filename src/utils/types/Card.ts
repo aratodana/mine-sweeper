@@ -50,13 +50,6 @@ class Card {
         })
     }
 
-    equals (other:Card):boolean {
-        return this.id === other.id;
-    }
-
-    similar (other:Card):boolean {
-        return this.title === other.title && this.description === other.description && this.price === other.price;
-    }
 }
 
 
