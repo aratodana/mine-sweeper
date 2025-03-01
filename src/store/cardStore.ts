@@ -49,7 +49,7 @@ class CardStore {
 
     @action
     addCoin () {
-        console.log('TODO');
+        gameStore.addCoin(3);
     }
 
     @action

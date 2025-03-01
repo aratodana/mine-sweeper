@@ -36,7 +36,7 @@ const Field = observer(() => {
   return (
       <View style={styles.container}>
           {Array.from({length: 5}).map((_, i) => (
-              <IconView name={i+1 <= gameStore.life ? 'life' : 'lostLife'} size={40} />
+              <IconView key={i} name={i+1 <= gameStore.life ? 'life' : 'lostLife'} size={40} />
           ))}
       </View>
   );

@@ -28,6 +28,7 @@ const imageList = {
     life: require('../../assets/icons/life.png'),
     lostLife: require('../../assets/icons/lost-life.png'),
     reveal: require('../../assets/icons/reveal.png'),
+    burnedMine: require('../../assets/icons/burned-mine.png'),
 }
 
 

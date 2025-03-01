@@ -34,7 +34,7 @@ class GameStore {
 
     @computed
     get isDefeat ():boolean {
-        return boardStore.boardStatus.includes(GameStatus.DEFEATED);
+        return this.life === 0;
     }
 
     @computed

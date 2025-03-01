@@ -72,7 +72,7 @@ const FieldView = observer(({fieldData, onReveal, onFlag}: FieldProps) => {
     if (fieldData.isRevealed) {
         return (
             <View style={[styles.field, styles.revealed]}>
-                <Text>{fieldData.value === FieldStatus.MINE ? '💣' : (fieldData.value === 0 ? '' : fieldData.value)}</Text>
+                <Text>{fieldData.value === FieldStatus.MINE ? <IconView name={'burnedMine'} size={50} /> : (fieldData.value === 0 ? '' : fieldData.value)}</Text>
             </View>
         )
     }

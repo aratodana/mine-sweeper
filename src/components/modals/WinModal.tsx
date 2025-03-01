@@ -52,7 +52,7 @@ const WinModal = observer(() => {
     const { t } = useTranslation();
 
   return (
-      <Modal visible={gameStore.isWin} transparent={true} animationType="slide">
+      <Modal visible={gameStore.isWin && !gameStore.isDefeat} transparent={true} animationType="slide">
           <ImageBackground style={styles.fullAreaView} source={require('../../../assets/background/succes.png')}>
                   <TouchableWithoutFeedback onPress={gameStore.isFullWin ? gameStore.restartGame : gameStore.startNextLevel}>
                   <SafeAreaView style={styles.content}>

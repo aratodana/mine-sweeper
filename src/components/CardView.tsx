@@ -147,7 +147,7 @@ const CardView = ({ card, onPress = () => {}, onLongPress = () => {} }: Props): 
             </View>
             <View style={[styles.actionWrapper]}>
                 {actions.map(action =>
-                    <View style={[styles.actionWrapperItem]}>
+                    <View key={action.icon} style={[styles.actionWrapperItem]}>
                         <IconView name={action.icon} size={17} />
                         <Text style={[styles.priceWrapperText]}>
                             {action.text}

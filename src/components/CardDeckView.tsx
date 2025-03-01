@@ -29,7 +29,7 @@ const CardDeckView = observer(() => {
           <FlatList
               data={gameStore.getCards}
               renderItem={({ item }) => <View style={styles.card}><CardView card={item} onPress={() => gameStore.useCard(item)} onLongPress={() => uiStore.openCardViewModal(item)} /></View>}
-              keyExtractor={(item, index) => `${item}_${index}`}
+              keyExtractor={(item) => item.id.toString()}
               horizontal={true}
               showsHorizontalScrollIndicator={true}
               ItemSeparatorComponent={() => <View style={{ width: 4 }} />}

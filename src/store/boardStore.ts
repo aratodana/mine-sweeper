@@ -2,9 +2,9 @@ import {action, computed, makeAutoObservable, observable} from "mobx";
 import {FieldStatus, getFieldByNumberOfMinesAround} from "../utils/enum/FieldStatus.ts";
 import randomInteger from "../utils/functions/randomInteger.ts";
 import {GameStatus} from "../utils/enum/GameStatus.ts";
-import { Field } from "../utils/types/Field.ts";
+import {Field} from "../utils/types/Field.ts";
 import {getRandomCard} from "../utils/types/Card.ts";
-
+import {gameStore} from "./gameStore.ts";
 
 
 class BoardStore {
@@ -169,6 +169,9 @@ class BoardStore {
             return;
         }
         this.board[cx][cy].isRevealed = true;
+        if(this.board[cx][cy].value === FieldStatus.MINE) {
+            gameStore.removeLife(1);
+        }
 
         if (this.board[cx][cy].value === FieldStatus.EMPTY) {
             const intervalXMin = cx === 0 ? 0 : cx -1;
@@ -210,10 +213,7 @@ class BoardStore {
         for (let i = 0; i < this.board.length; i++) {
             for (let j = 0; j < this.board.length; j++) {
                 if (this.board[i][j].value == FieldStatus.MINE) {
-                    if (this.isRevealed(i, j)) {
-                        addProblemToList(GameStatus.DEFEATED)
-                    }
-                    if (!this.isFlagged(i, j)) {
+                    if (!this.isFlagged(i, j) && !this.isRevealed(i, j)) {
                         addProblemToList(GameStatus.NOT_ALL_MINES_FLAGGED);
                     }
                 }
