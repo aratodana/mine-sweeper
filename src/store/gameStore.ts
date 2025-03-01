@@ -1,9 +1,10 @@
 import {action, computed, makeAutoObservable, observable} from "mobx";
-import {boardStore} from "./boardStore.ts";
-import {GameStatus} from "../utils/enum/GameStatus.ts";
-import { Card, Action} from "../utils/types/Card.ts";
-import {cardStore} from "../store/cardStore.ts";
+import {boardStore} from "./boardStore";
+import { Card, Action} from "../utils/types/Card";
+import {cardStore} from "../store/cardStore";
+// @ts-ignore
 import levels from "../config/levels.json"
+import type {GameStoreExportState} from "../utils/types/exportStates";
 
 class GameStore {
     @observable
@@ -20,6 +21,23 @@ class GameStore {
 
     constructor() {
         makeAutoObservable(this);
+    }
+
+    @computed
+    get exportState () {
+        return {
+            currentLevel: this.currentLevel,
+            cards: this.cards,
+            coins: this.coins,
+            life: this.life,
+        }
+    }
+    @action
+    importState = (payload: GameStoreExportState)=> {
+        this.currentLevel = payload.currentLevel;
+        this.cards = payload.cards;
+        this.coins = payload.coins;
+        this.life = payload.life;
     }
 
     @computed

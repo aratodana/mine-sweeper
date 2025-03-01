@@ -5,6 +5,7 @@ import {GameStatus} from "../utils/enum/GameStatus.ts";
 import {Field} from "../utils/types/Field.ts";
 import {getRandomCard} from "../utils/types/Card.ts";
 import {gameStore} from "./gameStore.ts";
+import type {BoardStoreExportState, GameStoreExportState} from "../utils/types/exportStates.ts";
 
 
 class BoardStore {
@@ -13,6 +14,17 @@ class BoardStore {
 
     constructor() {
         makeAutoObservable(this);
+    }
+
+    @computed
+    get exportState () {
+        return {
+            board: this.board
+        }
+    }
+    @action
+    importState =  (payload: BoardStoreExportState)=> {
+        this.board = payload.board;
     }
 
 

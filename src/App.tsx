@@ -15,7 +15,7 @@ import {
     View,
 } from 'react-native';
 
-import {gameStore} from "./store/gameStore.ts";
+import {gameStore} from "./store/gameStore";
 import BoardView from "./components/BoardView.tsx";
 import WinModal from "./components/modals/WinModal.tsx";
 import DefeatModal from "./components/modals/DefeatModal.tsx";
@@ -24,6 +24,8 @@ import CardDeckView from "./components/CardDeckView.tsx";
 import CoinMarkerView from "./components/CoinMarkerView.tsx";
 import CardViewModal from "./components/modals/CardViewModal.tsx";
 import LifeBarView from "./components/LifeBarView.tsx";
+import AppLifecycleHandler from "./utils/AppLifecycleHandler";
+import {storageStore} from "./store/storageStore";
 
 const styles = StyleSheet.create({
     appContainer: {
@@ -56,11 +58,13 @@ const styles = StyleSheet.create({
 function App(): React.JSX.Element {
 
    useEffect(() => {
-      gameStore.startGameByLevel();
+       gameStore.startGameByLevel();
+       storageStore.load();
    });
 
     return (
         <ImageBackground style={styles.imageWrapper} source={require('../assets/background/game.png')}>
+            <AppLifecycleHandler />
             <SafeAreaView style={styles.appContainer}>
                 <CardViewModal />
                 <WinModal />
